@@ -8,14 +8,15 @@
 include:
     - template: Auto-DevOps.gitlab-ci.yml
 
-services:
-    - docker:dind
+stages:
+    - build
+    - test
 
 variables:
     DOCKER_DRIVER: overlay2
 
-stages:
-    - build
+services:
+    - docker:dind
 
 build:
     stage: build
