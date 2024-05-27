@@ -6,4 +6,18 @@
 # Note that environment variables can be set in several places
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 include:
-- template: Auto-DevOps.gitlab-ci.yml
+    - template: Auto-DevOps.gitlab-ci.yml
+
+services:
+    - docker:dind
+
+variables:
+    DOCKER_DRIVER: overlay2
+
+stages:
+    - build
+
+build:
+    stage: build
+    script:
+        - docker-compose up --build -d
