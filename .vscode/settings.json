@@ -81,6 +81,7 @@
     },
     "conventionalCommits.scopes": [
         "component",
-        "page"
+        "page",
+        "build"
     ]
 }

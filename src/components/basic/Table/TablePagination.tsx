@@ -23,9 +23,9 @@ export function TablePagination({ nextPage, prevPage, currentPage, totalPages, c
                 <Select listOptions={listPerPageOptions} defaultValue={'10'} onChange={event => changeItemsPerPage(parseInt(event.target.value))} />
             </div>
             <div className='join h-fit'>
-                <Button className='join-item shadow-none' disabled={currentPage === 1} onClick={prevPage} noAnimation text='«' icon />
+                <Button className='join-item shadow-none' disabled={currentPage === 1} onClick={prevPage} noAnimation text='«' />
                 <div className='join-item flex w-24 items-center justify-center bg-primary px-5 text-[14px] font-medium text-primary-content shadow-none'>{`${currentPage} - ${totalPages}`}</div>
-                <Button className='join-item shadow-none' disabled={currentPage === totalPages} onClick={nextPage} noAnimation text='»' icon />
+                <Button className='join-item shadow-none' disabled={currentPage === totalPages} onClick={nextPage} noAnimation text='»' />
             </div>
         </div>
     );
