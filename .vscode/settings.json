@@ -1,0 +1,86 @@
+{
+    //Editor
+    "editor.insertSpaces": true,
+    "editor.renderLineHighlight": "all",
+    "editor.rulers": [
+        150
+    ],
+    "editor.wordWrap": "on",
+    "eslint.enable": true,
+    "editor.guides.indentation": true,
+    "editor.renderWhitespace": "all",
+    "editor.detectIndentation": false,
+    "editor.parameterHints.enabled": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.stickyScroll.enabled": true,
+    "editor.tabSize": 4,
+    "editor.fontLigatures": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    //Prettier
+    "prettier.proseWrap": "always",
+    "prettier.semi": true,
+    "prettier.printWidth": 150,
+    "prettier.tabWidth": 4,
+    "prettier.singleQuote": false,
+    "prettier.bracketSpacing": true,
+    "prettier.useTabs": false,
+    "prettier.arrowParens": "avoid",
+    "prettier.jsxSingleQuote": true,
+    "prettier.trailingComma": "none",
+    "javascript.format.enable": false,
+    "typescript.format.enable": false,
+    "prettier.requireConfig": false,
+    // HTML CSS Class Completion
+    "html-css-class-completion.enableEmmetSupport": true,
+    // Tailwind
+    "tailwindCSS.includeLanguages": {
+        "plaintext": "javascript"
+    },
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    // Emmet
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "typescript": "typescriptreact",
+        "javascriptreact": "javascriptreact",
+        "mardkown": "html"
+    },
+    // Eslint
+    "eslint.validate": [
+        "javascript",
+        "typescriptreact",
+        "javascriptreact",
+        "typescript"
+    ],
+    // Languages
+    "[javascript]": {
+        "editor.autoClosingBrackets": "always",
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[typescript]": {
+        "editor.autoClosingBrackets": "always",
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[javascriptreact]": {
+        "editor.autoClosingBrackets": "always",
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[typescriptreact]": {
+        "editor.autoClosingBrackets": "always",
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "conventionalCommits.scopes": [
+        "component",
+        "page"
+    ]
+}
