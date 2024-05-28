@@ -13,8 +13,8 @@ const SideBar = () => {
 
     return (
         <aside
-            className={`flex h-screen w-14 flex-col items-center pt-8 ${collapsed ? 'w-16' : 'w-80'} transition-max-height overflow-hidden 
-            rounded-e-3xl bg-primary text-primary-content duration-500 ease-in-out`}
+            className={`flex h-screen w-14 flex-col items-center pt-8 ${collapsed ? 'min-w-16' : 'min-w-80'} transition-max-height overflow-hidden 
+            rounded-e-md bg-primary text-primary-content duration-500 ease-in-out`}
         >
             <header>
                 <button type='button' className='sidebar-burger' onClick={handlerCollapsed}>
@@ -46,7 +46,7 @@ const SideBar = () => {
                                         {item.items.map((subItem, indexDelay) => (
                                             <li
                                                 key={subItem.title}
-                                                className={`${collapsed ? 'ml-2' : 'ml-8'} animate-slideIn flex items-center text-base opacity-0`}
+                                                className={`${collapsed ? 'ml-2' : 'ml-8'} flex animate-slideIn items-center text-base opacity-0`}
                                                 /* @ts-ignore */
                                                 style={{ '--delay': indexDelay * 0.09 + 's' }}
                                             >
@@ -61,7 +61,7 @@ const SideBar = () => {
                     ))}
                 </ul>
             </nav>
-            <Button text='Sair' onClick={logout} className='btn-error w-full rounded-none p-0 duration-500' startIcon icon={FaSignOutAlt} />
+            <Button text='Sair' onClick={logout} className='btn-error w-full rounded-none p-0 duration-500' variant={collapsed ? 'icon' : undefined} startIcon icon={{ icon: FaSignOutAlt }} />
         </aside>
     );
 };
