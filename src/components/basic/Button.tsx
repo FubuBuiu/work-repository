@@ -14,6 +14,7 @@ export default function Button({
     endIcon,
     outline,
     noAnimation,
+    ghost,
     block,
     color,
     contentColor,
@@ -24,9 +25,10 @@ export default function Button({
     loading?: boolean;
     noAnimation?: boolean;
     block?: boolean;
+    ghost?: boolean;
     startIcon?: boolean;
     endIcon?: boolean;
-    icon?: IconType;
+    icon?: { icon: IconType; size?: number | string };
     outline?: boolean;
     variant?: VariantButtonType;
     size?: ButtonSizesType;
@@ -49,8 +51,11 @@ export default function Button({
     if (loading) {
         customization.push('no-animation disabled');
     }
+    if (ghost) {
+        customization.push('btn-ghost');
+    }
     if (variant === 'icon') {
-        customization.push('min-w-fit btn-circle');
+        customization.push('btn-circle');
     }
 
     enum ButtonSize {
@@ -59,7 +64,7 @@ export default function Button({
         'extra-small' = 'btn-xs'
     }
 
-    const GenericIcon = () => icon && createElement(icon);
+    const GenericIcon = () => icon && createElement(icon.icon, { size: icon.size });
 
     const getDarkColorFromCustomColor = (cor: string, porcentagem: number = 10): string => {
         // Extrair os componentes RGB da cor original
@@ -107,7 +112,7 @@ export default function Button({
     );
     return (
         <button
-            className={`btn ${size && ButtonSize[size]} ${!color && `btn-primary ${!outline && 'fill-primary-content'}`} ${customization} ${className}`}
+            className={`btn ${size && ButtonSize[size]} ${!color && `${!ghost && 'btn-primary'} ${!outline && 'fill-primary-content'}`} ${customization.join(' ')} ${className}`}
             {...props}
             style={color ? (outline ? outlinedButtonStyleWithCustomColor : filledButtonStyleWithCustomColor) : undefined}
             onMouseEnter={() => setIsHover(true)}

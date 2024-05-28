@@ -1,3 +1,4 @@
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-icons/md';
 import Button from '../Button';
 import Select, { ListOptionType } from '../Select';
 
@@ -23,9 +24,9 @@ export function TablePagination({ nextPage, prevPage, currentPage, totalPages, c
                 <Select listOptions={listPerPageOptions} defaultValue={'10'} onChange={event => changeItemsPerPage(parseInt(event.target.value))} />
             </div>
             <div className='join h-fit'>
-                <Button className='join-item shadow-none' disabled={currentPage === 1} onClick={prevPage} noAnimation text='«' />
+                <Button className='join-item shadow-none' disabled={currentPage === 1} onClick={prevPage} noAnimation variant='icon' icon={{ icon: MdKeyboardDoubleArrowLeft }} />
                 <div className='join-item flex w-24 items-center justify-center bg-primary px-5 text-[14px] font-medium text-primary-content shadow-none'>{`${currentPage} - ${totalPages}`}</div>
-                <Button className='join-item shadow-none' disabled={currentPage === totalPages} onClick={nextPage} noAnimation text='»' />
+                <Button className='join-item shadow-none' disabled={currentPage === totalPages} onClick={nextPage} noAnimation variant='icon' icon={{ icon: MdKeyboardDoubleArrowRight }} />
             </div>
         </div>
     );
