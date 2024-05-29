@@ -14,7 +14,7 @@ export default async function PrivateLayout({ children }: IProps) {
     }
 
     return (
-        <div className='flex'>
+        <div className='flex max-h-[100vh]'>
             <SideBar />
             {children}
         </div>

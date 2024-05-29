@@ -14,7 +14,7 @@ const SideBar = () => {
 
     return (
         <aside
-            className={`flex min-h-screen w-14 flex-col items-center pt-8 ${collapsed ? 'min-w-16' : 'min-w-80'} transition-max-height overflow-hidden 
+            className={`flex h-screen w-14 flex-col items-center pt-8 ${collapsed ? 'min-w-16' : 'min-w-80'} transition-max-height overflow-hidden 
             rounded-e-md bg-primary text-primary-content duration-500 ease-in-out`}
         >
             <header>

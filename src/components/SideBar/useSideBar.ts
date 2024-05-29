@@ -1,7 +1,3 @@
-import { signOut } from 'next-auth/react';
-import { useEffect, useState } from 'react';
-import { IconType } from 'react-icons';
-import { FaExchangeAlt, FaExclamationTriangle, FaFileAlt, FaPlusCircle, FaSearch, FaTimesCircle, FaTools } from 'react-icons/fa';
 import {
     FaArrowDown,
     FaBarcode,
@@ -27,8 +23,10 @@ import {
     FaUserShield,
     FaWarehouse
 } from 'react-icons/fa6';
-
-import { RouterPagesEnum } from '@/enums/RoutesEnum';
+import { FaExchangeAlt, FaExclamationTriangle, FaFileAlt, FaPlusCircle, FaSearch, FaTimesCircle, FaTools } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { IconType } from 'react-icons';
+import { signOut } from 'next-auth/react';
 
 interface IListItems {
     title: string;
@@ -46,8 +44,7 @@ export const useSideBar = () => {
 
     const logout = () => {
         signOut({
-            callbackUrl: '/',
-            redirect: false
+            callbackUrl: '/'
         });
     };
 
@@ -75,66 +72,66 @@ export const useSideBar = () => {
             title: 'Produtos e Relacionados',
             icon: FaBox,
             items: [
-                { title: 'Produtos', url: RouterPagesEnum.PRODUTOS_RELACIONADOS.PRODUTOS, icon: FaBoxOpen },
-                { title: 'Substâncias', url: RouterPagesEnum.PRODUTOS_RELACIONADOS.SUBSTANCIAS, icon: FaFlask },
-                { title: 'Pragas', url: RouterPagesEnum.PRODUTOS_RELACIONADOS.PRAGAS, icon: FaBug },
-                { title: 'Culturas', url: RouterPagesEnum.PRODUTOS_RELACIONADOS.CULTURAS, icon: FaSeedling },
-                { title: 'Classe de Uso', url: RouterPagesEnum.PRODUTOS_RELACIONADOS.CLASSE_DE_USO, icon: FaListUl },
-                { title: 'Classe Toxicológica', url: RouterPagesEnum.PRODUTOS_RELACIONADOS.CLASSE_TOXICOLOGICA, icon: FaSkullCrossbones }
+                { title: 'Produtos', url: '/produtos', icon: FaBoxOpen },
+                { title: 'Substâncias', url: '/substancias', icon: FaFlask },
+                { title: 'Pragas', url: '/pragas', icon: FaBug },
+                { title: 'Culturas', url: '/culturas', icon: FaSeedling },
+                { title: 'Classe de Uso', url: '/classe-de-uso', icon: FaListUl },
+                { title: 'Classe Toxicológica', url: '/classe-toxicologica', icon: FaSkullCrossbones }
             ]
         },
         {
             title: 'Entidades',
             icon: FaUsers,
             items: [
-                { title: 'Fabricantes', url: RouterPagesEnum.ENTIDADES.FABRICANTES, icon: FaIndustry },
-                { title: 'Produtos', url: RouterPagesEnum.ENTIDADES.PAGEENTIDADES_PRODUTOS, icon: FaBoxOpen },
-                { title: 'Revendedores', url: RouterPagesEnum.ENTIDADES.REVENDAS, icon: FaStore },
-                { title: 'Produtores', url: RouterPagesEnum.ENTIDADES.PRODUTORES, icon: FaTractor },
-                { title: 'Aplicadores', url: RouterPagesEnum.ENTIDADES.APLICADORES, icon: FaSprayCan },
-                { title: 'Centrais de Descarte', url: RouterPagesEnum.ENTIDADES.CENTRAIS_DE_DESCARTE, icon: FaRecycle },
-                { title: 'Estações Experimentais', url: RouterPagesEnum.ENTIDADES.ESTACOES_EXPERIMENTAIS, icon: FaFlask }
+                { title: 'Fabricantes', url: '/fabricantes', icon: FaIndustry },
+                { title: 'Produtos', url: '/produtos', icon: FaBoxOpen },
+                { title: 'Revendedores', url: '/revendedores', icon: FaStore },
+                { title: 'Produtores', url: '/produtores', icon: FaTractor },
+                { title: 'Aplicadores', url: '/aplicadores', icon: FaSprayCan },
+                { title: 'Centrais de Descarte', url: '/centrais-de-descarte', icon: FaRecycle },
+                { title: 'Estações Experimentais', url: '/estacoes-experimentais', icon: FaFlask }
             ]
         },
         {
             title: 'Controle de Estoque',
             icon: FaWarehouse,
             items: [
-                { title: 'Revendedores', url: RouterPagesEnum.CONTROLE_ESTOQUE.REVENDEDORES, icon: FaStore },
-                { title: 'Produtores', url: RouterPagesEnum.CONTROLE_ESTOQUE.PRODUTORES, icon: FaTractor },
-                { title: 'Aplicadores', url: RouterPagesEnum.CONTROLE_ESTOQUE.APLICADORES, icon: FaSprayCan },
-                { title: 'Centrais de Descarte', url: RouterPagesEnum.CONTROLE_ESTOQUE.CENTRAIS_DE_DESCARTE, icon: FaRecycle },
-                { title: 'Revendas', url: RouterPagesEnum.CONTROLE_ESTOQUE.REVENDAS_RECEBIMENTO, icon: FaBoxesStacked }
+                { title: 'Revendedores', url: '/revendedores', icon: FaStore },
+                { title: 'Produtores', url: '/produtores', icon: FaTractor },
+                { title: 'Aplicadores', url: '/aplicadores', icon: FaSprayCan },
+                { title: 'Centrais de Descartes', url: '/centrais-de-descartes', icon: FaRecycle },
+                { title: 'Revendas', url: '/revendas-recebimento-de-estoque', icon: FaBoxesStacked }
             ]
         },
         {
             title: 'Utilitários',
             icon: FaTools,
             items: [
-                { title: 'Relatório de logs', url: RouterPagesEnum.UTILITARIOS.RELATORIO_DE_LOGS, icon: FaFileAlt },
-                { title: 'Filtrar Importações', url: RouterPagesEnum.UTILITARIOS.FILTRAR_IMPORTACOES, icon: FaFilter },
-                { title: 'NCM', url: RouterPagesEnum.UTILITARIOS.NCM, icon: FaBarcode },
-                { title: 'Consulta CREA', url: RouterPagesEnum.UTILITARIOS.CONSULTA_CREA, icon: FaSearch },
-                { title: 'Consultar NF', url: RouterPagesEnum.UTILITARIOS.CONSULTAR_NF, icon: FaFileInvoice }
+                { title: 'Relatório de logs', url: '/relatorio-de-logs', icon: FaFileAlt },
+                { title: 'Filtrar Importações', url: '/filtrar-importacoes', icon: FaFilter },
+                { title: 'NCM', url: '/ncm', icon: FaBarcode },
+                { title: 'Consulta CREA', url: '/consulta-crea', icon: FaSearch },
+                { title: 'Consultar NF', url: '/consultar-nf', icon: FaFileInvoice }
             ]
         },
         {
             title: 'Fiscalização',
             icon: FaClipboardCheck,
             items: [
-                { title: 'Apreensões', url: RouterPagesEnum.FISCALIZACAO.APREENSOES, icon: FaExclamationTriangle },
-                { title: 'Fiscais', url: RouterPagesEnum.FISCALIZACAO.FISCAIS, icon: FaUserShield },
-                { title: 'Irregularidades', url: RouterPagesEnum.FISCALIZACAO.IRREGULARIDADES, icon: FaTimesCircle },
-                { title: 'Processos', url: RouterPagesEnum.FISCALIZACAO.PROCESSOS, icon: FaFolderOpen },
-                { title: 'Sanções', url: RouterPagesEnum.FISCALIZACAO.SANCOES, icon: FaGavel }
+                { title: 'Apreensões', url: '/apreensoes', icon: FaExclamationTriangle },
+                { title: 'Fiscais', url: '/fiscais', icon: FaUserShield },
+                { title: 'Irregularidades', url: '/irregularidades', icon: FaTimesCircle },
+                { title: 'Processos', url: '/processos', icon: FaFolderOpen },
+                { title: 'Sanções', url: '/sancoes', icon: FaGavel }
             ]
         },
         {
             title: 'Movimentação',
             icon: FaExchangeAlt,
             items: [
-                { title: 'Dar baixa', url: RouterPagesEnum.MOVIMENTACAO.DAR_BAIXA, icon: FaArrowDown },
-                { title: 'Incluir', url: RouterPagesEnum.MOVIMENTACAO.INCLUIR, icon: FaPlusCircle }
+                { title: 'Dar baixa', url: '/dar-baixa', icon: FaArrowDown },
+                { title: 'Incluir', url: '/incluir', icon: FaPlusCircle }
             ]
         }
     ];
