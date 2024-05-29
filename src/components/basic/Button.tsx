@@ -1,4 +1,4 @@
-import { CSSProperties, createElement, useState } from 'react';
+import { createElement, CSSProperties, useState } from 'react';
 import { IconType } from 'react-icons';
 
 type VariantButtonType = 'icon' | 'normal';
