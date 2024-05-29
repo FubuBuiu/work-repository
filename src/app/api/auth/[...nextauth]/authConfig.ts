@@ -7,7 +7,7 @@ export const nextAuthOptions: NextAuthOptions = {
             name: 'credentials',
             credentials: {
                 login: { label: 'Login', type: 'text' },
-                senha: { label: 'Senha', type: 'password' }
+                password: { label: 'Senha', type: 'password' }
             },
             async authorize(credentials) {
                 const response = await fetch(process.env.NEXTAUTH_URL ?? '', {
@@ -17,7 +17,7 @@ export const nextAuthOptions: NextAuthOptions = {
                     },
                     body: JSON.stringify({
                         login: credentials?.login,
-                        senha: credentials?.senha
+                        senha: credentials?.password
                     })
                 });
 

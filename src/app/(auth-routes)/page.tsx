@@ -2,27 +2,38 @@
 
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { SyntheticEvent, useState } from 'react';
+import { useState } from 'react';
 import logoHome from '@/assets/auth/logoSiagro.png';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import * as zod from 'zod';
+import TextField from '@/components/basic/TextField';
+import Button from '@/components/basic/Button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Alert from '@/components/basic/Alert';
+
+type LoginFormDataType = {
+    login: string;
+    password: string;
+};
 
 export default function AuthRoutes() {
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const [showAlert, setShowAlert] = useState<boolean>(false);
+
+    const validations = zod.object({ login: zod.string().min(1, { message: 'Campo obrigatório' }), password: zod.string().min(1, { message: 'Campo obrigatório' }) });
+    const { control, handleSubmit } = useForm({ resolver: zodResolver(validations), mode: 'onSubmit' });
 
     const router = useRouter();
 
-    async function handleSubmit(event: SyntheticEvent) {
-        event.preventDefault();
-
+    async function onSubmit({ login, password }: LoginFormDataType) {
         const result = await signIn('credentials', {
-            login: email,
-            senha: password,
+            login,
+            password,
             redirect: false
         });
 
         if (result?.error) {
+            setShowAlert(true);
             return;
         }
 
@@ -30,24 +41,20 @@ export default function AuthRoutes() {
     }
 
     return (
-        <div className='auth-container flex h-screen w-full flex-col items-center justify-center'>
-            <Link href={'/playground'}>PLAYGROUND</Link>
-            <form className='flex w-[400px] flex-col items-center gap-3' onSubmit={handleSubmit}>
-                <Image src={logoHome} alt='Logo' width={200} height={200} />
-                <h6 className='text-[9px] text-white'>Sistema Integrado de Gestão de Agrotóxicos</h6>
-                <input className='h-12 w-full rounded-md border border-gray-300 bg-transparent p-2' type='text' name='email' placeholder='Digite seu e-mail' onChange={e => setEmail(e.target.value)} />
-                <input
-                    className='h-12 w-full rounded-md border border-gray-300 bg-transparent p-2'
-                    type='password'
-                    name='password'
-                    placeholder='Digite sua senha'
-                    onChange={e => setPassword(e.target.value)}
-                />
-
-                <button type='submit' className='h-12 w-full rounded-md bg-gray-300 text-sm font-medium uppercase text-gray-800 hover:bg-gray-400'>
-                    acessar o sistema
-                </button>
-            </form>
+        <div className='flex h-full w-full flex-col items-center gap-6 bg-secondary'>
+            <div className='relative h-4/5 w-full bg-blue-400 bg-background-login-page'>
+                <div className='absolute bottom-0 -mt-[180px] h-3/4 w-full bg-gradient-to-b from-transparent to-secondary'></div>
+            </div>
+            <div className=' absolute bottom-0 top-0 flex w-[350px] flex-col items-center justify-center gap-2 p-2'>
+                <Image src={logoHome} alt='Logo' priority width='250' />
+                <h6 className='text-[10px] text-white'>Sistema Integrado de Gestão de Agrotóxicos</h6>
+                <form className='w-full' onSubmit={handleSubmit(data => onSubmit(data as LoginFormDataType))}>
+                    <TextField name='login' variant='filled' placeholder='Login' control={control} />
+                    <TextField name='password' variant='filled' placeholder='Senha' type='password' control={control} />
+                    <Button text='ENTRAR' block type='submit' />
+                </form>
+            </div>
+            <Alert className='w-[400px]' variant='error' message='Login/Senha incorreto' isVisible={showAlert} setIsVisible={setShowAlert} />
         </div>
     );
 }
