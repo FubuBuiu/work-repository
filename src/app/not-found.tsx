@@ -1,9 +1,10 @@
 'use client';
-import Button from '@/components/basic/Button';
 import Image from 'next/image';
-import React from 'react';
-import notFound from '@/assets/404/not-found.png';
 import Link from 'next/link';
+import React from 'react';
+
+import notFound from '@/assets/404/not-found.png';
+import Button from '@/components/basic/Button';
 
 const NotFoundPage: React.FC = () => {
     return (

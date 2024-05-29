@@ -1,4 +1,5 @@
 import NextAuth from 'next-auth';
+
 import { nextAuthOptions } from './authConfig';
 
 const handler = NextAuth(nextAuthOptions);
