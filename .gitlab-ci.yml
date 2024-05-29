@@ -8,6 +8,7 @@
 
 stages:
     - build
+    - cleanup
 
 variables:
     DOCKER_DRIVER: overlay2
@@ -19,6 +20,15 @@ build:
     stage: build
     script:
         - docker-compose up --build -d
+    only:
+        - merge_requests
+        - develop
+
+cleanup:
+    stage: cleanup
+    script:
+        - docker image prune -f
+    when: on_success
     only:
         - merge_requests
         - develop
