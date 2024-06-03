@@ -1,3 +1,4 @@
+'use client';
 import { createElement, CSSProperties, useState } from 'react';
 import { IconType } from 'react-icons';
 
