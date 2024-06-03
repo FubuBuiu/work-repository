@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from 'react';
-import { useController } from 'react-hook-form';
+import { Control, FieldValues, useController } from 'react-hook-form';
 
 type SizeType = 'extra-small' | 'small' | 'medium' | 'large';
 
@@ -14,21 +14,22 @@ interface CheckboxPropsType extends Omit<InputHTMLAttributes<HTMLInputElement>, 
     size?: SizeType;
     text?: string;
     textColor?: string;
+    errorColor?: string;
+    control: Control<FieldValues>;
+    name?: string;
     className?: string;
-    control?: any;
-    name: string;
 }
 
-export default function Checkbox({ className, text, size = 'medium', textColor, control, name, ...props }: CheckboxPropsType) {
+export default function Checkbox({ className, control, name = '', errorColor, text, size = 'medium', textColor, ...props }: CheckboxPropsType) {
     const { field, fieldState } = useController({
         control,
-        defaultValue: '',
+        defaultValue: false,
         name
     });
 
     return (
         <div className='form-control w-fit'>
-            <label className='label cursor-pointer'>
+            <label className='label cursor-pointer p-0'>
                 {text && (
                     <span className='label-text mr-3' style={{ color: textColor ? textColor : undefined }}>
                         {text}
@@ -36,7 +37,11 @@ export default function Checkbox({ className, text, size = 'medium', textColor, 
                 )}
                 <input type='checkbox' className={`checkbox-primary checkbox ${SizeEnum[size]} ${className}`} {...props} {...field} />
             </label>
-            {fieldState.error && <span className='text-xs text-error'>{fieldState.error.message}</span>}
+            {fieldState.error && (
+                <span className={`text-xs ${!errorColor && 'text-error'}`} style={{ color: errorColor ? errorColor : undefined }}>
+                    {fieldState.error.message}
+                </span>
+            )}
         </div>
     );
 }

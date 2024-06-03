@@ -1,7 +1,6 @@
-import { createElement, CSSProperties, useState } from 'react';
+import { CSSProperties, createElement, useState } from 'react';
 import { Control, FieldValues, useController } from 'react-hook-form';
 import { IconType } from 'react-icons';
-
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     startIcon?: IconType;
     endIcon?: IconType;
@@ -41,9 +40,9 @@ export default function TextField({
     color,
     errorColor,
     variant,
+    required,
     name = '',
     control,
-    required,
     ...props
 }: TextFieldProps) {
     const { field, fieldState } = useController({
@@ -54,10 +53,12 @@ export default function TextField({
 
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
-    const outlinedField = `bg-transparent border-base-300 border-2 focus-within:border-primary focus-within:outline-none ${!isFocused && 'hover:border-base-content'} ${fieldState.error && errorColor === undefined && '!border-error focus-within:!border-error'}`;
+    const outlinedField = `bg-transparent border-base-300 border-2 focus-within:border-primary focus-within:outline-none ${!isFocused && 'hover:border-base-content'} ${fieldState.error && !errorColor && '!border-error focus-within:!border-error'}`;
+
     const outlinedCustomColor: CSSProperties = { borderColor: fieldState.error ? errorColor && errorColor : isFocused ? color : undefined };
 
-    const filledField = `bg-base-200  border-base-300 border-0 border-b-[2px] rounded-b-none hover:bg-base-300 ${!isFocused && 'hover:border-base-content'} focus-within:border-primary focus-within:outline-none ${fieldState.error && errorColor === undefined && '!border-error focus-within:!border-error'}`;
+    const filledField = `border-base-300 border-0 border-b-[2px] rounded-b-none hover:bg-base-300 ${!isFocused && 'hover:border-base-content'} focus-within:border-primary focus-within:outline-none ${fieldState.error && errorColor === undefined && '!border-error focus-within:!border-error'}`;
+
     const filledCustomColor: CSSProperties = { borderColor: fieldState.error ? (errorColor ? errorColor : '!border-error focus-within:!border-error') : isFocused ? color : undefined };
 
     const fieldStyleWithCustomColor: CSSProperties = variant === 'filled' ? filledCustomColor : outlinedCustomColor;
@@ -106,7 +107,7 @@ export default function TextField({
             </label>
             <div className='label'>
                 {fieldState.error && (
-                    <span className={`text-xs ${fieldState.error && errorColor === undefined && '!text-error'}`} style={{ color: errorColor ? errorColor : undefined }}>
+                    <span className={`text-xs ${!errorColor && '!text-error'}`} style={{ color: errorColor ? errorColor : undefined }}>
                         {fieldState.error.message}
                     </span>
                 )}
