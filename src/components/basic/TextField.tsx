@@ -41,9 +41,9 @@ export default function TextField({
     color,
     errorColor,
     variant,
-    required,
     name = '',
     control,
+    required,
     ...props
 }: TextFieldProps) {
     const { field, fieldState } = useController({

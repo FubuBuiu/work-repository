@@ -16,7 +16,7 @@ export default async function PrivateLayout({ children }: IProps) {
     return (
         <div className='flex max-h-[100vh]'>
             <SideBar />
-            {children}
+            <div className='max-h-screen flex-1 overflow-y-scroll p-8'>{children}</div>
         </div>
     );
 }
