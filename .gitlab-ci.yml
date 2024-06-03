@@ -7,7 +7,7 @@
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 
 stages:
-  - approve
+  - lint
   - build
   - cleanup
 
@@ -17,29 +17,27 @@ variables:
 services:
   - docker:dind
 
-approve:
-  stage: approve
+lint:
+  stage: lint
   script:
-    - echo "Waiting for approval..."
-  when: manual
-  allow_failure: false
-  only:
-    - merge_requests
-    - develop
+    - yarn eslint --fix
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_MERGE_REQUEST_ID
 
 build:
   stage: build
   script:
     - docker-compose up --build -d
-  only:
-    - merge_requests
-    - develop
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_MERGE_REQUEST_ID
 
 cleanup:
   stage: cleanup
   script:
     - docker image prune -f
   when: on_success
-  only:
-    - merge_requests
-    - develop
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_MERGE_REQUEST_ID
