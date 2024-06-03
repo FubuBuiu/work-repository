@@ -23,6 +23,8 @@ build:
     only:
         - merge_requests
         - develop
+  rules:
+        - if: $CI_COMMIT_BRANCH == "develop" 
 
 cleanup:
     stage: cleanup
