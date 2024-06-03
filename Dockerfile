@@ -13,6 +13,9 @@ RUN yarn install
 # Copy the project files to the container
 COPY . .
 
+# Run ESLint to lint the project files
+RUN yarn eslint . --fix
+
 # Build the Next.js application
 RUN yarn build
 
