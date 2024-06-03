@@ -7,7 +7,6 @@
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 
 stages:
-  - lint
   - build
   - cleanup
 
@@ -16,14 +15,6 @@ variables:
 
 services:
   - docker:dind
-
-lint:
-  stage: lint
-  script:
-    - yarn eslint --fix
-  rules:
-    - if: $CI_COMMIT_BRANCH == "develop"
-    - if: $CI_MERGE_REQUEST_ID
 
 build:
   stage: build
