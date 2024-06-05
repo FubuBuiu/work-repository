@@ -35,6 +35,7 @@ export default function TextField({
     outsideTitle,
     insideTitle,
     topRightText,
+    disabled,
     bottomRightText,
     fieldSize = 'medium',
     color,
@@ -57,7 +58,7 @@ export default function TextField({
 
     const outlinedCustomColor: CSSProperties = { borderColor: fieldState.error ? errorColor && errorColor : isFocused ? color : undefined };
 
-    const filledField = `border-base-300 border-0 border-b-[2px] rounded-b-none hover:bg-base-300 ${!isFocused && 'hover:border-base-content'} focus-within:border-primary focus-within:outline-none ${fieldState.error && errorColor === undefined && '!border-error focus-within:!border-error'}`;
+    const filledField = `bg-base-200  border-base-300 border-0 border-b-[2px] rounded-b-none hover:bg-base-300 ${!isFocused && 'hover:border-base-content'} focus-within:border-primary focus-within:outline-none ${fieldState.error && !errorColor && '!border-error focus-within:!border-error'}`;
 
     const filledCustomColor: CSSProperties = { borderColor: fieldState.error ? (errorColor ? errorColor : '!border-error focus-within:!border-error') : isFocused ? color : undefined };
 
@@ -74,7 +75,10 @@ export default function TextField({
         <label className='form-control' style={{ width: widthField }}>
             {(outsideTitle || topRightText) && (
                 <div className='label'>
-                    <span className={`label-text font-medium ${isFocused && 'text-primary'} ${fieldState.error && errorColor === undefined && '!text-error'}`} style={textFocusStyleWithCustomColor}>
+                    <span
+                        className={`label-text font-medium ${disabled ? 'field-title-disabled' : `${isFocused && 'text-primary'} ${fieldState.error && !errorColor && '!text-error'}`}`}
+                        style={textFocusStyleWithCustomColor}
+                    >
                         {outsideTitle}
                         {required && <span className='ml-1 text-red-500'>*</span>}
                     </span>
@@ -82,25 +86,28 @@ export default function TextField({
                 </div>
             )}
             <label
-                className={`input ${FieldSizeEnum[fieldSize]} flex items-center gap-2 ${variant === 'filled' ? filledField : outlinedField}`}
+                className={`input ${FieldSizeEnum[fieldSize]} flex items-center gap-2 ${variant === 'filled' ? filledField : outlinedField} ${disabled && 'field-disabled'}`}
                 style={fieldStyleWithCustomColor}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
             >
                 {startIcon && (
-                    <div className={`${isFocused && `text-primary`} ${fieldState.error && errorColor === undefined && '!text-error'}`} style={textFocusStyleWithCustomColor}>
+                    <div className={`${isFocused && `text-primary`} ${fieldState.error && !errorColor && '!text-error'}`} style={textFocusStyleWithCustomColor}>
                         <GenericStartIcon />
                     </div>
                 )}
                 {insideTitle && (
-                    <span className={`text-h text-nowrap ${isFocused && 'text-primary'} ${fieldState.error && errorColor === undefined && '!text-error'}`} style={textFocusStyleWithCustomColor}>
+                    <span
+                        className={`text-h text-nowrap ${disabled ? 'field-title-disabled' : `${isFocused && 'text-primary'} ${fieldState.error && !errorColor && '!text-error'}`}`}
+                        style={textFocusStyleWithCustomColor}
+                    >
                         {insideTitle}
-                        {required && <span className='ml-1 text-red-500'>*</span>}
+                        {required && <span className='ml-1'>*</span>}
                     </span>
                 )}
-                <input type='text' className='w-full' {...props} {...field} />
+                <input type='text' disabled={disabled} className={`w-full ${disabled && 'placeholder-disabled'}`} {...props} {...field} />
                 {endIcon && (
-                    <div className={`${isFocused && 'text-primary'} ${fieldState.error && errorColor === undefined && '!text-error'}`} style={textFocusStyleWithCustomColor}>
+                    <div className={`${isFocused && 'text-primary'} ${fieldState.error && !errorColor && '!text-error'}`} style={textFocusStyleWithCustomColor}>
                         <GenericEndIcon />
                     </div>
                 )}

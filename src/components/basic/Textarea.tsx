@@ -23,7 +23,7 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     name?: string;
 }
 
-export default function Textarea({ className, size, title, required = false, topRightText, bottomRightText, color, errorColor, control, name = '', ...props }: TextareaProps) {
+export default function Textarea({ className, size, disabled, title, required = false, topRightText, bottomRightText, color, errorColor, control, name = '', ...props }: TextareaProps) {
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
     const { field, fieldState } = useController({
@@ -44,15 +44,19 @@ export default function Textarea({ className, size, title, required = false, top
         <label className='form-control w-fit' onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
             {(title || topRightText) && (
                 <div className='label'>
-                    <span className={`label-text font-medium ${!color && isFocused && 'text-primary'} ${fieldState.error && !errorColor && '!text-error'}`} style={titleWithCustomColor}>
+                    <span
+                        className={`label-text font-medium ${disabled ? 'field-title-disabled' : `${!color && isFocused && 'text-primary'} ${fieldState.error && !errorColor && '!text-error'}`}`}
+                        style={titleWithCustomColor}
+                    >
                         {title}
                         {required && <span className='ml-1 text-red-500'>*</span>}
                     </span>
-                    <span className='label-text-alt'>{topRightText}</span>
+                    <span className={`label-text-alt ${disabled && 'field-title-disabled'}`}>{topRightText}</span>
                 </div>
             )}
             <textarea
-                className={`${size && TextareaSizeEnum[size]} textarea textarea-bordered border-2 focus-within:outline-none ${!isFocused && 'hover:border-base-content'} ${defaultTextareaStyle} ${className}`}
+                className={`${size && TextareaSizeEnum[size]} textarea textarea-bordered border-2 bg-transparent focus-within:outline-none ${!isFocused && 'hover:border-base-content'} ${defaultTextareaStyle} ${disabled && 'field-disabled'} ${className}`}
+                disabled={disabled}
                 {...props}
                 {...field}
                 style={textareaWithCustomColor}
@@ -62,7 +66,7 @@ export default function Textarea({ className, size, title, required = false, top
                     <span className={`text-xs ${fieldState.error && !errorColor && '!text-error'}`} style={{ color: errorColor ? errorColor : undefined }}>
                         {fieldState.error?.message}
                     </span>
-                    <span className='label-text-alt'>{bottomRightText}</span>
+                    <span className={`label-text-alt ${disabled && 'field-title-disabled'}`}>{bottomRightText}</span>
                 </div>
             )}
         </label>

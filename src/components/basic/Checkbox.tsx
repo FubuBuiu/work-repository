@@ -20,7 +20,7 @@ interface CheckboxPropsType extends Omit<InputHTMLAttributes<HTMLInputElement>, 
     className?: string;
 }
 
-export default function Checkbox({ className, control, name = '', errorColor, text, size = 'medium', textColor, ...props }: CheckboxPropsType) {
+export default function Checkbox({ className, disabled, control, name = '', errorColor, text, size = 'medium', textColor, ...props }: CheckboxPropsType) {
     const { field, fieldState } = useController({
         control,
         defaultValue: false,
@@ -35,7 +35,7 @@ export default function Checkbox({ className, control, name = '', errorColor, te
                         {text}
                     </span>
                 )}
-                <input type='checkbox' className={`checkbox-primary checkbox ${SizeEnum[size]} ${className}`} {...props} {...field} />
+                <input type='checkbox' disabled={disabled} className={`checkbox-primary checkbox ${SizeEnum[size]} ${className}`} {...props} {...field} />
             </label>
             {fieldState.error && (
                 <span className={`text-xs ${!errorColor && 'text-error'}`} style={{ color: errorColor ? errorColor : undefined }}>

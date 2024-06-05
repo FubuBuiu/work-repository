@@ -4,9 +4,6 @@ const config: Config = {
     content: ['./src/pages/**/*.{js,ts,jsx,tsx,mdx}', './src/components/**/*.{js,ts,jsx,tsx,mdx}', './src/app/**/*.{js,ts,jsx,tsx,mdx}'],
     theme: {
         extend: {
-            backgroundImage: {
-                'background-login-page': "url('../assets/auth/backlogin.jpg')"
-            },
             keyframes: {
                 slideIn: {
                     '0%': { opacity: '0', transform: 'translateX(100%)' },
@@ -29,11 +26,43 @@ const config: Config = {
             {
                 light: {
                     ...require('daisyui/src/theming/themes')['light'],
-                    ...require('./themes/index')['light']
+                    ...require('./themes/index')['light'],
+                    '.field-disabled': {
+                        'background-color': '#CCCCCC !important',
+                        'border-color': '#CCCCCC !important'
+                    },
+                    '.field-title-disabled': {
+                        color: '#888'
+                    },
+                    '.placeholder-disabled::placeholder': {
+                        color: '#888'
+                    },
+                    '.background-toggle-disabled': {
+                        backgroundColor: '#CCCCCC'
+                    },
+                    '.dot-toggle-disabled': {
+                        backgroundColor: '#888'
+                    }
                 },
                 dark: {
                     ...require('daisyui/src/theming/themes')['dark'],
-                    ...require('./themes/index')['dark']
+                    ...require('./themes/index')['dark'],
+                    '.field-disabled': {
+                        'background-color': '#2a2b29 !important',
+                        borderColor: '#2a2b29 !important'
+                    },
+                    '.field-title-disabled': {
+                        color: '#888'
+                    },
+                    '.placeholder-disabled::placeholder': {
+                        color: '#888'
+                    },
+                    '.background-toggle-disabled': {
+                        backgroundColor: '#2a2b29'
+                    },
+                    '.dot-toggle-disabled': {
+                        backgroundColor: '#4f514d'
+                    }
                 }
             }
         ]
