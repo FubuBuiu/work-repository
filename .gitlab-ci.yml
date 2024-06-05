@@ -22,7 +22,7 @@ build:
     - docker-compose up --build -d
   rules:
     - if: $CI_COMMIT_BRANCH == "develop"
-    - if: $CI_MERGE_REQUEST_ID
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_COMMIT_BRANCH == "develop"'
 
 cleanup:
   stage: cleanup
