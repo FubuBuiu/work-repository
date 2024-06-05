@@ -20,6 +20,7 @@ type LoginFormDataType = {
 
 export default function AuthRoutes() {
     const [showAlert, setShowAlert] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const validations = zod.object({ login: zod.string().min(1, { message: 'Campo obrigatório' }), password: zod.string().min(1, { message: 'Campo obrigatório' }) });
     const { control, handleSubmit } = useForm({ resolver: zodResolver(validations), mode: 'onSubmit' });
@@ -27,11 +28,13 @@ export default function AuthRoutes() {
     const router = useRouter();
 
     async function onSubmit({ login, password }: LoginFormDataType) {
+        setIsLoading(true);
         const result = await signIn('credentials', {
             login,
             password,
             redirect: false
         });
+        setIsLoading(false);
 
         if (result?.error) {
             setShowAlert(true);
@@ -52,10 +55,10 @@ export default function AuthRoutes() {
                 <form className='w-full' onSubmit={handleSubmit(data => onSubmit(data as LoginFormDataType))}>
                     <TextField name='login' variant='filled' placeholder='Login' control={control} />
                     <TextField name='password' variant='filled' placeholder='Senha' type='password' control={control} />
-                    <Button text='ENTRAR' block type='submit' />
+                    <Button text='ENTRAR' loading={isLoading} block type='submit' />
                 </form>
             </div>
-            <Alert className='w-[400px]' variant='error' message='Login/Senha incorreto' isVisible={showAlert} setIsVisible={setShowAlert} />
+            <Alert className='w-[400px]' variant='error' message='Login/Senha incorreto(a)' isVisible={showAlert} setIsVisible={setShowAlert} />
         </div>
     );
 }
