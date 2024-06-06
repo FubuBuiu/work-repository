@@ -12,8 +12,8 @@ const Routes = {
         UPDATE: PRODUCT_PREFIX + 'produtos/update'
     },
     SUBSTANCIAS: {
-        REGISTER: SUBSTANCIAS_PREFIX + '/cadastro',
-        LIST: SUBSTANCIAS_PREFIX + '/',
+        REGISTER: PRODUCT_PREFIX + SUBSTANCIAS_PREFIX + '/cadastro',
+        LIST: PRODUCT_PREFIX + SUBSTANCIAS_PREFIX + '/',
         UPDATE: SUBSTANCIAS_PREFIX + '/update'
     },
     PRAGAS: {

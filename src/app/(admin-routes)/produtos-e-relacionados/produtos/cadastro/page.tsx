@@ -23,8 +23,7 @@ const RegisterForm: React.FC = () => {
     return (
         <>
             <h1 className='text-2xl font-bold text-gray-800 dark:text-gray-100'>Cadastro de Produtos</h1>
-            <form onSubmit={onSubmit} className='gap-y-4s flex w-full flex-1 flex-col gap-y-4'>
-                <div className='mt-5 flex flex-wrap' />
+            <form onSubmit={onSubmit} className='mt-5 flex w-full flex-1 flex-col gap-y-4'>
                 <CardForm title='Dados Gerais'>
                     <TextField required control={control} name='marca_comercial' outsideTitle='Marca Comercial' />
                     <TextField required type='date' control={control} name='vencimento_de_registro' outsideTitle='Vencimento do Registro' />

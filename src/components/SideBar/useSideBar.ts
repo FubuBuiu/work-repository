@@ -75,7 +75,7 @@ export const useSideBar = () => {
             icon: FaBox,
             items: [
                 { title: 'Produtos', url: GlobalRouters.product.PRODUTOS.LIST, icon: FaBoxOpen },
-                { title: 'Substâncias', url: '/substancias', icon: FaFlask },
+                { title: 'Substâncias', url: GlobalRouters.product.SUBSTANCIAS.LIST, icon: FaFlask },
                 { title: 'Pragas', url: '/pragas', icon: FaBug },
                 { title: 'Culturas', url: '/culturas', icon: FaSeedling },
                 { title: 'Classe de Uso', url: '/classe-de-uso', icon: FaListUl },
