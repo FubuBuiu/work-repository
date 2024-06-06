@@ -28,6 +28,8 @@ import {
     FaWarehouse
 } from 'react-icons/fa6';
 
+import { GlobalRouters } from '@/routers';
+
 interface IListItems {
     title: string;
     icon: IconType;
@@ -72,7 +74,7 @@ export const useSideBar = () => {
             title: 'Produtos e Relacionados',
             icon: FaBox,
             items: [
-                { title: 'Produtos', url: '/produtos', icon: FaBoxOpen },
+                { title: 'Produtos', url: GlobalRouters.product.PRODUTOS.LIST, icon: FaBoxOpen },
                 { title: 'Substâncias', url: '/substancias', icon: FaFlask },
                 { title: 'Pragas', url: '/pragas', icon: FaBug },
                 { title: 'Culturas', url: '/culturas', icon: FaSeedling },

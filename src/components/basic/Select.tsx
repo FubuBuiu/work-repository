@@ -1,4 +1,4 @@
-import { CSSProperties, SelectHTMLAttributes, createElement, useState } from 'react';
+import { createElement, CSSProperties, SelectHTMLAttributes, useState } from 'react';
 import { Control, FieldValues, useController } from 'react-hook-form';
 import { IconType } from 'react-icons';
 
@@ -70,7 +70,7 @@ export default function Select({
                 disabled={disabled}
             >
                 <option value={undefined} hidden>
-                    {insideTitle}
+                    {insideTitle ?? 'Selecione'}
                 </option>
                 {listOptions.map(option => (
                     <option key={option.key} value={option.value}>
