@@ -41,7 +41,7 @@ export default function Textarea({ className, size, disabled, title, required = 
     };
 
     return (
-        <label className='form-control w-fit' onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
+        <label className='form-control w-full' onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
             {(title || topRightText) && (
                 <div className='label'>
                     <span

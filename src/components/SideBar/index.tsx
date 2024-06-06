@@ -31,6 +31,7 @@ const SideBar = () => {
                             <div
                                 className={`flex cursor-pointer items-center justify-center rounded-lg px-3 hover:bg-secondary hover:text-white hover:shadow-lg hover:duration-700 focus:translate-x-2 focus:bg-gray-800 focus:text-white focus:shadow-lg focus:outline-none ${item.title === itemActive ? 'bg-secondary text-primary-content shadow-lg' : ''} ${collapsed ? 'p-2 hover:translate-x-1' : 'hover:translate-x-2'}`}
                                 onClick={() => handlerItemActive(item.title)}
+                                {...(collapsed ? { title: `${item.title}` } : {})}
                             >
                                 {React.createElement(item.icon, { className: `items-center ${collapsed ? 'text-xl' : ''}` })}
                                 <button

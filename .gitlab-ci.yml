@@ -7,14 +7,14 @@
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 
 stages:
-  - build
-  - cleanup
+    - build
+    - cleanup
 
 variables:
-  DOCKER_DRIVER: overlay2
+    DOCKER_DRIVER: overlay2
 
 services:
-  - docker:dind
+    - docker:dind
 
 build:
   stage: build
@@ -25,10 +25,10 @@ build:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_COMMIT_BRANCH == "develop"'
 
 cleanup:
-  stage: cleanup
-  script:
-    - docker image prune -f
-  when: on_success
-  rules:
-    - if: $CI_COMMIT_BRANCH == "develop"
-    - if: $CI_MERGE_REQUEST_ID
+    stage: cleanup
+    script:
+        - docker image prune -f
+    when: on_success
+    rules:
+        - if: $CI_COMMIT_BRANCH == "develop"
+        - if: $CI_MERGE_REQUEST_ID
