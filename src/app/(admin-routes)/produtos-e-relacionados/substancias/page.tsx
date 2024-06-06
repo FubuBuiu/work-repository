@@ -11,7 +11,7 @@ import { Table } from '@/components/basic/Table';
 import TextField from '@/components/basic/TextField';
 import { ProductRouters } from '@/routers';
 
-export const ListSubstancePage = () => {
+const ListSubstancePage = () => {
     const { control, handleSubmit } = useForm();
     const onSubmit = (data: any) => console.log(data);
     const listMock = [
