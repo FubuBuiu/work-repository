@@ -1,51 +1,51 @@
 const PRODUCT_PREFIX = '/produtos-e-relacionados';
-const SUBSTANCIAS_PREFIX = '/substancias';
-const PRAGAS_PREFIX = '/pragas';
-const CULTURAS_PREFIX = '/culturas';
-const CLASSE_DE_USO_PREFIX = '/classe-de-uso';
-const CLASSE_TOXICOLOGICA_PREFIX = '/classe-toxicologica';
+const SUBSTANCES_PREFIX = '/substancias';
+const PRAGUE_PREFIX = '/pragas';
+const CULTURES_PREFIX = '/culturas';
+const CLASS_IN_USE_PREFIX = '/classe-de-uso';
+const CLASS_TOXICOLOGICAL_PREFIX = '/classe-toxicologica';
 
 const Routes = {
-    PRODUTOS: {
+    PRODUCTS: {
         REGISTER: PRODUCT_PREFIX + '/produtos/cadastro',
         LIST: PRODUCT_PREFIX + '/produtos/',
         UPDATE: PRODUCT_PREFIX + 'produtos/update'
     },
-    SUBSTANCIAS: {
-        REGISTER: PRODUCT_PREFIX + SUBSTANCIAS_PREFIX + '/cadastro',
-        LIST: PRODUCT_PREFIX + SUBSTANCIAS_PREFIX + '/',
-        UPDATE: SUBSTANCIAS_PREFIX + '/update'
+    SUBSTANCES: {
+        REGISTER: PRODUCT_PREFIX + SUBSTANCES_PREFIX + '/cadastro',
+        LIST: PRODUCT_PREFIX + SUBSTANCES_PREFIX + '/',
+        UPDATE: SUBSTANCES_PREFIX + '/update'
     },
-    PRAGAS: {
-        REGISTER: PRAGAS_PREFIX + '/cadastro',
-        LIST: PRAGAS_PREFIX + '/',
-        UPDATE: PRAGAS_PREFIX + '/update'
+    PRAGUE: {
+        REGISTER: PRODUCT_PREFIX + PRAGUE_PREFIX + '/cadastro',
+        LIST: PRODUCT_PREFIX + PRAGUE_PREFIX + '/',
+        UPDATE: PRODUCT_PREFIX + PRAGUE_PREFIX + '/update'
     },
-    CULTURAS: {
-        REGISTER: CULTURAS_PREFIX + '/cadastro',
-        LIST: CULTURAS_PREFIX + '/',
-        UPDATE: CULTURAS_PREFIX + '/update'
+    CULTURES: {
+        REGISTER: CULTURES_PREFIX + '/cadastro',
+        LIST: CULTURES_PREFIX + '/',
+        UPDATE: CULTURES_PREFIX + '/update'
     },
-    CLASSE_DE_USO: {
-        REGISTER: CLASSE_DE_USO_PREFIX + '/cadastro',
-        LIST: CLASSE_DE_USO_PREFIX + '/',
-        UPDATE: CLASSE_DE_USO_PREFIX + '/update'
+    CLASS_IN_USE: {
+        REGISTER: CLASS_IN_USE_PREFIX + '/cadastro',
+        LIST: CLASS_IN_USE_PREFIX + '/',
+        UPDATE: CLASS_IN_USE_PREFIX + '/update'
     },
-    CLASSE_TOXICOLOGICA: {
-        REGISTER: CLASSE_TOXICOLOGICA_PREFIX + '/cadastro',
-        LIST: CLASSE_TOXICOLOGICA_PREFIX + '/',
-        UPDATE: CLASSE_TOXICOLOGICA_PREFIX + '/update',
-        NOVO: CLASSE_TOXICOLOGICA_PREFIX + '/novo'
+    CLASS_TOXICOLOGICAL: {
+        REGISTER: CLASS_TOXICOLOGICAL_PREFIX + '/cadastro',
+        LIST: CLASS_TOXICOLOGICAL_PREFIX + '/',
+        UPDATE: CLASS_TOXICOLOGICAL_PREFIX + '/update',
+        NOVO: CLASS_TOXICOLOGICAL_PREFIX + '/novo'
     }
 } as const;
 
 enum Route {
-    PRODUTOS = 'PRODUTOS',
-    SUBSTANCIAS = 'SUBSTANCIAS',
-    PRAGAS = 'PRAGAS',
-    CULTURAS = 'CULTURAS',
-    CLASSE_DE_USO = 'CLASSE_DE_USO',
-    CLASSE_TOXICOLOGICA = 'CLASSE_TOXICOLOGICA'
+    PRODUCTS = 'PRODUCTS',
+    SUBSTANCES = 'SUBSTANCES',
+    PRAGUE = 'PRAGUE',
+    CULTURES = 'CULTURES',
+    CLASS_IN_USE = 'CLASS_IN_USE',
+    CLASS_TOXICOLOGICAL = 'CLASS_TOXICOLOGICAL'
 }
 
 type EndPath = keyof (typeof Routes)[Route];
@@ -56,12 +56,12 @@ type RoutesWithEndPaths = {
 };
 
 const ProductRouters: RoutesWithEndPaths = {
-    PRODUTOS: Routes.PRODUTOS,
-    SUBSTANCIAS: Routes.SUBSTANCIAS,
-    PRAGAS: Routes.PRAGAS,
-    CULTURAS: Routes.CULTURAS,
-    CLASSE_DE_USO: Routes.CLASSE_DE_USO,
-    CLASSE_TOXICOLOGICA: Routes.CLASSE_TOXICOLOGICA
+    PRODUCTS: Routes.PRODUCTS,
+    SUBSTANCES: Routes.SUBSTANCES,
+    PRAGUE: Routes.PRAGUE,
+    CULTURES: Routes.CULTURES,
+    CLASS_IN_USE: Routes.CLASS_IN_USE,
+    CLASS_TOXICOLOGICAL: Routes.CLASS_TOXICOLOGICAL
 };
 
 export { ProductRouters };

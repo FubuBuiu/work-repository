@@ -1,5 +1,6 @@
 import React, { CSSProperties, useState } from 'react';
 import { Control, FieldValues, useController } from 'react-hook-form';
+import { twMerge } from 'tailwind-merge';
 
 export const SelectList = ({
     control,
@@ -10,7 +11,10 @@ export const SelectList = ({
     errorColor,
     variant,
     color,
-    topRightText
+    topRightText,
+    className,
+    type,
+    disabled
 }: {
     control: Control<FieldValues>;
     name: string;
@@ -23,6 +27,9 @@ export const SelectList = ({
     variant?: 'filled' | 'outlined';
     color?: string;
     topRightText?: string;
+    className?: string;
+    type?: string;
+    disabled?: boolean;
 }) => {
     const {
         field,
@@ -34,17 +41,17 @@ export const SelectList = ({
     });
 
     const [isFocused, setIsFocused] = useState(false);
-
+    const defaultSelectStyle = !color && `focus-within:border-primary ${error && !errorColor && '!border-error focus-within:!border-error'}`;
     const outlinedCustomColor: CSSProperties = { borderColor: error ? errorColor && errorColor : isFocused ? color : undefined };
     const filledCustomColor: CSSProperties = { borderColor: error ? (errorColor ? errorColor : '!border-error focus-within:!border-error') : isFocused ? color : undefined };
     const fieldStyleWithCustomColor: CSSProperties = variant === 'filled' ? filledCustomColor : outlinedCustomColor;
-
+    const styleWindMerge = twMerge('flex flex-col', className);
     const textFocusStyleWithCustomColor: CSSProperties = {
         color: error ? errorColor && errorColor : isFocused ? color : undefined
     };
 
     return (
-        <label className='flex flex-col gap-y-2' style={fieldStyleWithCustomColor} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
+        <label className={styleWindMerge} style={fieldStyleWithCustomColor} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
             {(title || topRightText) && (
                 <div className='label'>
                     <span className={`label-text font-medium ${isFocused && 'text-primary'} ${error && errorColor === undefined && '!text-error'}`} style={textFocusStyleWithCustomColor}>
@@ -54,8 +61,13 @@ export const SelectList = ({
                     <span className='label-text-alt'>{topRightText}</span>
                 </div>
             )}
-            <input {...field} list='browsers' className={`input input-md input-bordered w-full bg-base-200`} />
-            <datalist id='browsers'>
+            <input
+                {...field}
+                list={name}
+                className={`select select-bordered border-2 bg-transparent focus-within:outline-none ${disabled ? 'field-disabled' : `${defaultSelectStyle}  ${!isFocused && 'hover:border-black'}`} ${className} `}
+                type={type ?? 'text'}
+            />
+            <datalist id={name}>
                 {options.map(option => (
                     <option key={option.value} value={option.value} />
                 ))}

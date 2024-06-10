@@ -31,7 +31,7 @@ const RegisterForm: React.FC = () => {
                     <TextField required control={control} name='nome_busca_automatica_em_nf' outsideTitle='Nome Busca Automática em NF' />
                 </CardForm>
                 <CardForm title='Dados do Fabricante'>
-                    <SelectList required control={control} name='empresa' title='Empresa' options={[{ value: 'Empresa 1' }, { value: 'Empresa 2' }, { value: 'Empresa 3' }]} />
+                    <SelectList required type='text' control={control} name='empresa' title='Empresa' options={[{ value: 'Empresa 1' }, { value: 'Empresa 2' }, { value: 'Empresa 3' }]} />
                     <TextField control={control} name='localizacao' outsideTitle='Localização' disabled />
                     <TextField control={control} name='nome_fantasia' outsideTitle='Nome Fantasia' disabled />
                 </CardForm>

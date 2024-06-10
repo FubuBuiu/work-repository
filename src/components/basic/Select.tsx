@@ -31,6 +31,7 @@ export default function Select({
     errorColor,
     control,
     name = '',
+    required,
     ...props
 }: SelectPropsType) {
     const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -53,11 +54,12 @@ export default function Select({
     };
 
     return (
-        <label className='form-control w-fit max-w-xs' onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
+        <label className='form-control' onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
             {(outsideTitle || topRightLabel) && (
                 <div className='label'>
                     <span className={`label-text font-medium ${disabled ? 'field-title-disabled' : `${!color && isFocused && 'text-primary'}`}`} style={color ? titleStyleWithCustomColor : undefined}>
                         {outsideTitle}
+                        {required && <span className='ml-1 text-red-500'>*</span>}{' '}
                     </span>
                     <span className={`label-text-alt ${disabled && 'field-title-disabled'}`}>{topRightLabel && GenerateLabel(topRightLabel)}</span>
                 </div>
