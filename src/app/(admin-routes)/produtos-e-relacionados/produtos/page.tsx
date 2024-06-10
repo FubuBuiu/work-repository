@@ -93,7 +93,7 @@ const ListProduct = () => {
 
     return (
         <>
-            <h2 className='text-3xl font-bold'>Produtos</h2>
+            <h2 className='text-3xl font-bold underline decoration-primary underline-offset-8'>Produtos</h2>
             <Link href={ProductRouters.PRODUTOS.REGISTER} className='my-3 flex justify-end'>
                 <Button text='Adicionar Produto' icon={{ icon: FaPlus, size: 20 }} startIcon />
             </Link>

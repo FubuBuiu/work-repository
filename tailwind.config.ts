@@ -12,11 +12,21 @@ const config: Config = {
                 slideDown: {
                     '0%': { opacity: '0', transform: 'translateY(120%)' },
                     '100%': { opacity: '1', transform: 'translateY(0%)' }
+                },
+                fadeOutRight: {
+                    '0%': { opacity: '1', transform: 'translateX(0)' },
+                    '100%': { opacity: '0', transform: 'translateX(100%)' }
+                },
+                fadeInRight: {
+                    '0%': { opacity: '0', transform: 'translateX(100%)' },
+                    '100%': { opacity: '1', transform: 'translateX(0)' }
                 }
             },
             animation: {
                 slideIn: 'slideIn .25s ease-in-out forwards var(--delay, 0)',
-                slideDown: 'slideDown 0.5s ease-out'
+                slideDown: 'slideDown 0.5s ease-out',
+                fadeRightOut: 'fadeOutRight 0.5s ease-out',
+                fadeRightIn: 'fadeInRight 0.5s ease-out'
             }
         }
     },

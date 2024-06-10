@@ -89,9 +89,9 @@ const ListSubstancePage = () => {
 
     return (
         <>
-            <h2 className='text-3xl font-bold'>Substâncias</h2>
+            <h2 className='text-3xl font-bold underline decoration-primary underline-offset-8'>Substâncias</h2>
             <Link href={ProductRouters.SUBSTANCIAS.REGISTER} className='my-3 flex justify-end'>
-                <Button text='Adicionar Produto' icon={{ icon: FaPlus, size: 20 }} startIcon />
+                <Button text='Adicionar Substância' icon={{ icon: FaPlus, size: 20 }} startIcon />
             </Link>
             <Table.Root>
                 <Table.Filters>

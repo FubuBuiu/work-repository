@@ -74,12 +74,12 @@ export const useSideBar = () => {
             title: 'Produtos e Relacionados',
             icon: FaBox,
             items: [
-                { title: 'Produtos', url: GlobalRouters.product.PRODUTOS.LIST, icon: FaBoxOpen },
-                { title: 'Substâncias', url: GlobalRouters.product.SUBSTANCIAS.LIST, icon: FaFlask },
-                { title: 'Pragas', url: '/pragas', icon: FaBug },
-                { title: 'Culturas', url: '/culturas', icon: FaSeedling },
-                { title: 'Classe de Uso', url: '/classe-de-uso', icon: FaListUl },
-                { title: 'Classe Toxicológica', url: '/classe-toxicologica', icon: FaSkullCrossbones }
+                { title: 'Produtos', url: GlobalRouters.product.PRODUCTS.LIST, icon: FaBoxOpen },
+                { title: 'Substâncias', url: GlobalRouters.product.SUBSTANCES.LIST, icon: FaFlask },
+                { title: 'Pragas', url: GlobalRouters.product.PRAGUE.LIST, icon: FaBug },
+                { title: 'Culturas', url: GlobalRouters.product.CULTURES.LIST, icon: FaSeedling },
+                { title: 'Classe de Uso', url: GlobalRouters.product.CLASS_IN_USE.LIST, icon: FaListUl },
+                { title: 'Classe Toxicológica', url: GlobalRouters.product.CLASS_TOXICOLOGICAL.LIST, icon: FaSkullCrossbones }
             ]
         },
         {
