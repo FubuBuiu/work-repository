@@ -4,7 +4,7 @@ import React from 'react';
 import Button from '@/components/basic/Button';
 import Checkbox from '@/components/basic/Checkbox';
 import Select from '@/components/basic/Select';
-import { SelectList } from '@/components/basic/SelectList';
+import SelectList from '@/components/basic/SelectList';
 import Textarea from '@/components/basic/Textarea';
 import TextField from '@/components/basic/TextField';
 import { CardForm } from '@/components/cardForm';
@@ -36,11 +36,11 @@ const RegisterForm: React.FC = () => {
                     <TextField control={control} name='nome_fantasia' outsideTitle='Nome Fantasia' disabled />
                 </CardForm>
                 <CardForm title='Bula'>
-                    <Select listOptions={mockOptions} required control={control} name='classe_de_uso' outsideTitle='Classe de Uso' />
-                    <Select listOptions={mockOptions} required control={control} name='classe_toxicologica' outsideTitle='Classe Toxicológica' />
-                    <Select listOptions={mockOptions} required control={control} name='classe_ambiental' outsideTitle='Classe Ambiental' />
-                    <Select listOptions={mockOptions} required control={control} name='modo_de_acao' outsideTitle='Modo de Ação' />
-                    <Select listOptions={mockOptions} required control={control} name='modo_de_aplicacao' outsideTitle='Modo de Aplicação' />
+                    <Select options={mockOptions} required control={control} name='classe_de_uso' outsideTitle='Classe de Uso' />
+                    <Select options={mockOptions} required control={control} name='classe_toxicologica' outsideTitle='Classe Toxicológica' />
+                    <Select options={mockOptions} required control={control} name='classe_ambiental' outsideTitle='Classe Ambiental' />
+                    <Select options={mockOptions} required control={control} name='modo_de_acao' outsideTitle='Modo de Ação' />
+                    <Select options={mockOptions} required control={control} name='modo_de_aplicacao' outsideTitle='Modo de Aplicação' />
                 </CardForm>
                 <CardForm title='Outros' style={'items-center'}>
                     <div className='col-span-3'>

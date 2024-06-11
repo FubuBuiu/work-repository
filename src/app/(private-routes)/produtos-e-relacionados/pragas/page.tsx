@@ -106,7 +106,7 @@ const ListPraguePage = () => {
                             outsideTitle='Agente Transmissor'
                             control={control}
                             name='agentTransmitting'
-                            listOptions={[
+                            options={[
                                 { key: '1', value: 'Acaro' },
                                 { key: '2', value: 'Bacteria' },
                                 { key: '3', value: 'Erva daninha' },
@@ -119,7 +119,7 @@ const ListPraguePage = () => {
                             outsideTitle='Tipo de Praga'
                             control={control}
                             name='typePrague'
-                            listOptions={[
+                            options={[
                                 {
                                     key: '1',
                                     value: 'Doença'
@@ -138,7 +138,7 @@ const ListPraguePage = () => {
                             control={control}
                             outsideTitle='Situação'
                             name='situation'
-                            listOptions={[
+                            options={[
                                 { key: '1', value: 'Ativo' },
                                 { key: '2', value: 'Inativo' }
                             ]}

@@ -4,7 +4,7 @@ import { FaPlus } from 'react-icons/fa6';
 
 import Button from '@/components/basic/Button';
 import Select from '@/components/basic/Select';
-import { SelectList } from '@/components/basic/SelectList';
+import SelectList from '@/components/basic/SelectList';
 import Textarea from '@/components/basic/Textarea';
 import TextField from '@/components/basic/TextField';
 import { CardAnimated } from '@/components/CardAnimated';
@@ -27,7 +27,7 @@ const Page = () => {
                         required
                         name='agentTransmitting'
                         outsideTitle='Agente Transmissor'
-                        listOptions={[
+                        options={[
                             { key: '1', value: 'Acaro' },
                             { key: '2', value: 'Bacteria' },
                             { key: '3', value: 'Erva daninha' },
@@ -41,7 +41,7 @@ const Page = () => {
                         required
                         name='typePrague'
                         outsideTitle='Tipo de Praga'
-                        listOptions={[
+                        options={[
                             { key: '1', value: 'doença' },
                             { key: '2', value: 'erva daninha' },
                             { key: '3', value: 'Inseto' }

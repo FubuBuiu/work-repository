@@ -102,7 +102,7 @@ const ListSubstancePage = () => {
                             control={control}
                             outsideTitle='Situação'
                             name='situação'
-                            listOptions={[
+                            options={[
                                 { key: '1', value: 'Ativo' },
                                 { key: '2', value: 'Inativo' }
                             ]}
