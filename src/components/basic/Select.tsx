@@ -1,4 +1,4 @@
-import { createElement, CSSProperties, SelectHTMLAttributes, useState } from 'react';
+import { CSSProperties, SelectHTMLAttributes, createElement, useState } from 'react';
 import { Control, FieldValues, useController } from 'react-hook-form';
 import { IconType } from 'react-icons';
 
@@ -8,7 +8,7 @@ export interface ListOptionType {
 }
 
 interface SelectPropsType extends SelectHTMLAttributes<HTMLSelectElement> {
-    listOptions?: ListOptionType[];
+    options?: ListOptionType[];
     insideTitle?: string;
     outsideTitle?: string;
     topRightLabel?: string | IconType;
@@ -17,12 +17,13 @@ interface SelectPropsType extends SelectHTMLAttributes<HTMLSelectElement> {
     errorColor?: string;
     control: Control<FieldValues>;
     name?: string;
+    widthField?: string;
 }
 
 export default function Select({
     className,
     disabled,
-    listOptions = [],
+    options = [],
     insideTitle,
     outsideTitle,
     topRightLabel,
@@ -30,14 +31,16 @@ export default function Select({
     color,
     errorColor,
     control,
-    name = '',
+    widthField,
     required,
+    name = '',
     ...props
 }: SelectPropsType) {
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
     const { field, fieldState } = useController({
         control,
+        defaultValue: '',
         name
     });
 
@@ -46,7 +49,7 @@ export default function Select({
     const borderStyleWithCustomColor: CSSProperties = { borderColor: fieldState.error ? errorColor && errorColor : isFocused ? color : undefined };
     const titleStyleWithCustomColor: CSSProperties = { color: fieldState.error ? errorColor && errorColor : isFocused ? color : undefined };
 
-    const GenerateLabel = (value: string | IconType) => {
+    const generateLabel = (value: string | IconType) => {
         if (typeof value === 'string') {
             return value;
         }
@@ -54,18 +57,18 @@ export default function Select({
     };
 
     return (
-        <label className='form-control' onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
+        <label className='form-control w-full ' style={{ width: widthField ?? undefined }} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
             {(outsideTitle || topRightLabel) && (
                 <div className='label'>
                     <span className={`label-text font-medium ${disabled ? 'field-title-disabled' : `${!color && isFocused && 'text-primary'}`}`} style={color ? titleStyleWithCustomColor : undefined}>
                         {outsideTitle}
-                        {required && <span className='ml-1 text-red-500'>*</span>}{' '}
+                        {required && <span className='ml-1 text-red-500'>*</span>}
                     </span>
-                    <span className={`label-text-alt ${disabled && 'field-title-disabled'}`}>{topRightLabel && GenerateLabel(topRightLabel)}</span>
+                    <span className={`label-text-alt ${disabled && 'field-title-disabled'}`}>{topRightLabel && generateLabel(topRightLabel)}</span>
                 </div>
             )}
             <select
-                className={`select select-bordered border-2 bg-transparent focus-within:outline-none ${disabled ? 'field-disabled' : `${defaultSelectStyle}  ${!isFocused && 'hover:border-black'}`} ${className} `}
+                className={`select select-bordered w-full border-2 bg-transparent focus-within:outline-none ${disabled ? 'field-disabled' : `${defaultSelectStyle}  ${!isFocused && 'hover:border-black'}`} ${className} `}
                 {...props}
                 {...field}
                 style={borderStyleWithCustomColor}
@@ -74,7 +77,7 @@ export default function Select({
                 <option value={undefined} hidden>
                     {insideTitle ?? 'Selecione'}
                 </option>
-                {listOptions.map(option => (
+                {options.map(option => (
                     <option key={option.key} value={option.value}>
                         {option.value}
                     </option>
@@ -85,7 +88,7 @@ export default function Select({
                     <span className={`text-xs ${!errorColor && '!text-error'}`} style={{ color: errorColor ? errorColor : undefined }}>
                         {fieldState.error?.message}
                     </span>
-                    <span className={`label-text-alt ${disabled && 'field-title-disabled'}`}>{bottomRightLabel && GenerateLabel(bottomRightLabel)}</span>
+                    <span className={`label-text-alt ${disabled && 'field-title-disabled'}`}>{bottomRightLabel && generateLabel(bottomRightLabel)}</span>
                 </div>
             )}
         </label>

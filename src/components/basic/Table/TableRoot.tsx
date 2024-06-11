@@ -1,3 +1,4 @@
+'use client';
 import { ReactNode } from 'react';
 
 export function TableRoot({ width, children }: { width?: string; children: ReactNode }) {

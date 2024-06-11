@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import { useState } from 'react';
 
 interface HeaderTable {
@@ -15,7 +15,6 @@ export function TableContent({
     enumaratedRows,
     ...props
 }: React.TableHTMLAttributes<HTMLTableElement> & { header: HeaderTable[]; data?: Array<any>; enumaratedRows?: boolean; emptyMessage?: string }) {
-    //TODO Verificar a necessidade do useState list
     const [list, setList] = useState(data);
     const [orderColumn, setOrderColumn] = useState<string | undefined>(undefined);
     const [order, setOrder] = useState<orderType>('normal');
