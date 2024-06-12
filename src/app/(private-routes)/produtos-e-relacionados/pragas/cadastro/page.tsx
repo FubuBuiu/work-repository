@@ -17,7 +17,7 @@ const Page = () => {
 
     return (
         <>
-            <h1 className='text-2xl font-bold underline decoration-primary underline-offset-8'>Cadastro de Pragas</h1>
+            <h1 className='text-title'>Cadastro de Pragas</h1>
             <form className='col-span-2 mt-5 flex flex-col gap-y-5' onSubmit={handleSubmit}>
                 <CardForm title='Informações da Praga' style='grid grid-cols-1 gap-4 lg:grid-cols-2'>
                     <TextField control={control} name='scientificName' required outsideTitle='Nome Cientifico' />

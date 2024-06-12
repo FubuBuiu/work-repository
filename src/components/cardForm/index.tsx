@@ -33,7 +33,7 @@ export const CardForm: React.FC<CardFormProps> = ({ children, title, style, back
                 <h3 className='text-lg font-bold text-gray-400'>
                     {listTitle.map((word, index) => (
                         <React.Fragment key={index}>
-                            <span className='text-xl text-primary'>{word.charAt(0)}</span>
+                            <span className='text-xl'>{word.charAt(0)}</span>
                             {word.slice(1) + ' '}
                         </React.Fragment>
                     ))}
