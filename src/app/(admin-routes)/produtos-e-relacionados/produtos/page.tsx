@@ -1,5 +1,4 @@
 'use client';
-
 import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -15,74 +14,74 @@ import { ProductRouters } from '@/routers';
 const ListProduct = () => {
     const listMock: any = [
         {
-            marcaComercial: 'Marca 1',
-            fabricante: 'Fabricante 1',
+            tradeName: 'Marca 1',
+            manufacturer: 'manufacturer 1',
             cnpj: '123456789',
-            registroMAPA: '123456789',
-            situação: 'Ativo'
+            map: '123456789',
+            situation: 'Ativo'
         },
         {
-            marcaComercial: 'Marca 2',
-            fabricante: 'Fabricante 2',
+            tradeName: 'Marca 2',
+            manufacturer: 'manufacturer 2',
             cnpj: '987654321',
-            registroMAPA: '987654321',
-            situação: 'Inativo'
+            map: '987654321',
+            situation: 'Inativo'
         },
         {
-            marcaComercial: 'Marca 3',
-            fabricante: 'Fabricante 3',
+            tradeName: 'Marca 3',
+            manufacturer: 'manufacturer 3',
             cnpj: '123456789',
-            registroMAPA: '123456789',
-            situação: 'Ativo'
+            map: '123456789',
+            situation: 'Ativo'
         },
         {
-            marcaComercial: 'Marca 4',
-            fabricante: 'Fabricante 4',
+            tradeName: 'Marca 4',
+            manufacturer: 'manufacturer 4',
             cnpj: '987654321',
-            registroMAPA: '987654321',
-            situação: 'Inativo'
+            map: '987654321',
+            situation: 'Inativo'
         },
         {
-            marcaComercial: 'Marca 5',
-            fabricante: 'Fabricante 5',
+            tradeName: 'Marca 5',
+            manufacturer: 'manufacturer 5',
             cnpj: '123456789',
-            registroMAPA: '123456789',
-            situação: 'Ativo'
+            map: '123456789',
+            situation: 'Ativo'
         },
         {
-            marcaComercial: 'Marca 6',
-            fabricante: 'Fabricante 6',
+            tradeName: 'Marca 6',
+            manufacturer: 'manufacturer 6',
             cnpj: '987654321',
-            registroMAPA: '987654321',
-            situação: 'Inativo'
+            map: '987654321',
+            situation: 'Inativo'
         },
         {
-            marcaComercial: 'Marca 7',
-            fabricante: 'Fabricante 7',
+            tradeName: 'Marca 7',
+            manufacturer: 'manufacturer 7',
             cnpj: '123456789',
-            registroMAPA: '123456789',
-            situação: 'Ativo'
+            map: '123456789',
+            situation: 'Ativo'
         },
         {
-            marcaComercial: 'Marca 8',
-            fabricante: 'Fabricante 8',
+            tradeName: 'Marca 8',
+            manufacturer: 'manufacturer 8',
             cnpj: '987654321',
-            registroMAPA: '987654321',
-            situação: 'Inativo'
+            map: '987654321',
+            situation: 'Inativo'
         },
         {
-            marcaComercial: 'Marca 9',
-            fabricante: 'Fabricante 9',
+            tradeName: 'Marca 9',
+            manufacturer: 'manufacturer 9',
             cnpj: '123456789',
-            registroMAPA: '123456789',
-            situação: 'Ativo'
+            map: '123456789',
+            situation: 'Ativo'
         },
         {
-            marcaComercial: 'Marca 10',
-            fabricante: 'Fabricante 10',
+            tradeName: 'Marca 10',
+            manufacturer: 'manufacturer 10',
             cnpj: '987654321',
-            registroMAPA: '987654321',
-            situação: 'Inativo'
+            map: '987654321',
+            situation: 'Inativo'
         }
     ];
     const { control, handleSubmit } = useForm();
@@ -93,22 +92,24 @@ const ListProduct = () => {
 
     return (
         <>
-            <h2 className='text-3xl font-bold underline decoration-primary underline-offset-8'>Produtos</h2>
-            <Link href={ProductRouters.PRODUCTS.REGISTER} className='my-3 flex justify-end'>
-                <Button text='Adicionar Produto' icon={{ icon: FaPlus, size: 20 }} startIcon />
-            </Link>
+            <h2 className='text-title'>Produtos</h2>
+            <div className='my-3 flex justify-end'>
+                <Link href={ProductRouters.PRODUCTS.REGISTER}>
+                    <Button text='Adicionar Produto' icon={{ icon: FaPlus, size: 20 }} startIcon />
+                </Link>
+            </div>
             <Table.Root>
                 <Table.Filters>
                     <form className='flex w-full justify-end gap-x-3'>
-                        <TextField outsideTitle='Marca Comercial' control={control} name='marcaComercial' placeholder='text' />
-                        <TextField outsideTitle='Fabricante' control={control} name='marcaComercial' placeholder='text' />
+                        <TextField outsideTitle='Marca Comercial' control={control} name='tradeName' placeholder='text' />
+                        <TextField outsideTitle='Fabricante' control={control} name='manufacturer' placeholder='text' />
                         <TextField outsideTitle='CNPJ' control={control} name='cnpj' placeholder='ex:9909801' />
-                        <TextField outsideTitle='MAPA' control={control} name='marcaComercial' placeholder='text' />
+                        <TextField outsideTitle='MAPA' control={control} name='map' placeholder='text' />
                         <Select
                             control={control}
                             outsideTitle='Situação'
-                            name='situação'
-                            listOptions={[
+                            name='situation'
+                            options={[
                                 { key: '1', value: 'Ativo' },
                                 { key: '2', value: 'Inativo' }
                             ]}
@@ -120,11 +121,11 @@ const ListProduct = () => {
                     header={[
                         {
                             label: 'Marca Comercial',
-                            key: 'marcaComercial'
+                            key: 'tradeName'
                         },
                         {
                             label: 'Fabricante',
-                            key: 'fabricante'
+                            key: 'manufacturer'
                         },
                         {
                             label: 'CNPJ',
@@ -132,11 +133,11 @@ const ListProduct = () => {
                         },
                         {
                             label: 'Registro MAPA',
-                            key: 'registroMAPA'
+                            key: 'map'
                         },
                         {
                             label: 'Situação',
-                            key: 'situação'
+                            key: 'situation'
                         }
                     ]}
                     data={listMock}

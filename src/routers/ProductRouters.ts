@@ -9,7 +9,7 @@ const Routes = {
     PRODUCTS: {
         REGISTER: PRODUCT_PREFIX + '/produtos/cadastro',
         LIST: PRODUCT_PREFIX + '/produtos/',
-        UPDATE: PRODUCT_PREFIX + 'produtos/update'
+        UPDATE: PRODUCT_PREFIX + PRODUCT_PREFIX + 'produtos/update'
     },
     SUBSTANCES: {
         REGISTER: PRODUCT_PREFIX + SUBSTANCES_PREFIX + '/cadastro',
@@ -22,20 +22,19 @@ const Routes = {
         UPDATE: PRODUCT_PREFIX + PRAGUE_PREFIX + '/update'
     },
     CULTURES: {
-        REGISTER: CULTURES_PREFIX + '/cadastro',
-        LIST: CULTURES_PREFIX + '/',
-        UPDATE: CULTURES_PREFIX + '/update'
+        REGISTER: PRODUCT_PREFIX + CULTURES_PREFIX + '/cadastro',
+        LIST: PRODUCT_PREFIX + CULTURES_PREFIX + '/',
+        UPDATE: PRODUCT_PREFIX + CULTURES_PREFIX + '/update'
     },
     CLASS_IN_USE: {
-        REGISTER: CLASS_IN_USE_PREFIX + '/cadastro',
-        LIST: CLASS_IN_USE_PREFIX + '/',
-        UPDATE: CLASS_IN_USE_PREFIX + '/update'
+        REGISTER: PRODUCT_PREFIX + CLASS_IN_USE_PREFIX + '/cadastro',
+        LIST: PRODUCT_PREFIX + CLASS_IN_USE_PREFIX + '/',
+        UPDATE: PRODUCT_PREFIX + CLASS_IN_USE_PREFIX + '/update'
     },
     CLASS_TOXICOLOGICAL: {
-        REGISTER: CLASS_TOXICOLOGICAL_PREFIX + '/cadastro',
-        LIST: CLASS_TOXICOLOGICAL_PREFIX + '/',
-        UPDATE: CLASS_TOXICOLOGICAL_PREFIX + '/update',
-        NOVO: CLASS_TOXICOLOGICAL_PREFIX + '/novo'
+        REGISTER: PRODUCT_PREFIX + CLASS_TOXICOLOGICAL_PREFIX + '/cadastro',
+        LIST: PRODUCT_PREFIX + CLASS_TOXICOLOGICAL_PREFIX + '/',
+        UPDATE: PRODUCT_PREFIX + CLASS_TOXICOLOGICAL_PREFIX + '/update'
     }
 } as const;
 

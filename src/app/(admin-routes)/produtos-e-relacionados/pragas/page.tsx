@@ -15,71 +15,71 @@ import { ProductRouters } from '@/routers';
 const ListPraguePage = () => {
     const listMock: any = [
         {
-            nameScientific: 'Marca 1',
-            nameVulgar: 'nameVulgar 1',
+            scientificName: 'Marca 1',
+            vulgarName: 'vulgarName 1',
             agentTransmitting: '123456789',
             typePrague: '123456789',
             situation: 'Ativo'
         },
         {
-            nameScientific: 'Marca 2',
-            nameVulgar: 'nameVulgar 2',
+            scientificName: 'Marca 2',
+            vulgarName: 'vulgarName 2',
             agentTransmitting: '987654321',
             typePrague: '987654321',
             situation: 'Inativo'
         },
         {
-            nameScientific: 'Marca 3',
-            nameVulgar: 'nameVulgar 3',
+            scientificName: 'Marca 3',
+            vulgarName: 'vulgarName 3',
             agentTransmitting: '123456789',
             typePrague: '123456789',
             situation: 'Ativo'
         },
         {
-            nameScientific: 'Marca 4',
-            nameVulgar: 'nameVulgar 4',
+            scientificName: 'Marca 4',
+            vulgarName: 'vulgarName 4',
             agentTransmitting: '987654321',
             typePrague: '987654321',
             situation: 'Inativo'
         },
         {
-            nameScientific: 'Marca 5',
-            nameVulgar: 'nameVulgar 5',
+            scientificName: 'Marca 5',
+            vulgarName: 'vulgarName 5',
             agentTransmitting: '123456789',
             typePrague: '123456789',
             situation: 'Ativo'
         },
         {
-            nameScientific: 'Marca 6',
-            nameVulgar: 'nameVulgar 6',
+            scientificName: 'Marca 6',
+            vulgarName: 'vulgarName 6',
             agentTransmitting: '987654321',
             typePrague: '987654321',
             situation: 'Inativo'
         },
         {
-            nameScientific: 'Marca 7',
-            nameVulgar: 'nameVulgar 7',
+            scientificName: 'Marca 7',
+            vulgarName: 'vulgarName 7',
             agentTransmitting: '123456789',
             typePrague: '123456789',
             situation: 'Ativo'
         },
         {
-            nameScientific: 'Marca 8',
-            nameVulgar: 'nameVulgar 8',
+            scientificName: 'Marca 8',
+            vulgarName: 'vulgarName 8',
             agentTransmitting: '987654321',
             typePrague: '987654321',
             situation: 'Inativo'
         },
         {
-            nameScientific: 'Marca 9',
-            nameVulgar: 'nameVulgar 9',
+            scientificName: 'Marca 9',
+            vulgarName: 'vulgarName 9',
             agentTransmitting: '123456789',
             typePrague: '123456789',
             situation: 'Ativo'
         },
         {
-            nameScientific: 'Marca 10',
-            nameVulgar: 'nameVulgar 10',
+            scientificName: 'Marca 10',
+            vulgarName: 'vulgarName 10',
             agentTransmitting: '987654321',
             typePrague: '987654321',
             situation: 'Inativo'
@@ -100,13 +100,13 @@ const ListPraguePage = () => {
             <Table.Root>
                 <Table.Filters>
                     <form className='flex w-full justify-end gap-x-3'>
-                        <TextField outsideTitle='Nome Cientifico' control={control} name='nameScientific' placeholder='text' />
-                        <TextField outsideTitle='Nome Vulgar' control={control} name='nameVulgar' placeholder='text' />
+                        <TextField outsideTitle='Nome Cientifico' control={control} name='scientificName' placeholder='text' />
+                        <TextField outsideTitle='Nome Vulgar' control={control} name='vulgarName' placeholder='text' />
                         <Select
                             outsideTitle='Agente Transmissor'
                             control={control}
                             name='agentTransmitting'
-                            listOptions={[
+                            options={[
                                 { key: '1', value: 'Acaro' },
                                 { key: '2', value: 'Bacteria' },
                                 { key: '3', value: 'Erva daninha' },
@@ -119,7 +119,7 @@ const ListPraguePage = () => {
                             outsideTitle='Tipo de Praga'
                             control={control}
                             name='typePrague'
-                            listOptions={[
+                            options={[
                                 {
                                     key: '1',
                                     value: 'Doença'
@@ -138,7 +138,7 @@ const ListPraguePage = () => {
                             control={control}
                             outsideTitle='Situação'
                             name='situation'
-                            listOptions={[
+                            options={[
                                 { key: '1', value: 'Ativo' },
                                 { key: '2', value: 'Inativo' }
                             ]}
@@ -150,11 +150,11 @@ const ListPraguePage = () => {
                     header={[
                         {
                             label: 'Nome Cientifico',
-                            key: 'nameScientific'
+                            key: 'scientificName'
                         },
                         {
                             label: 'Nome Vulgar',
-                            key: 'nameVulgar'
+                            key: 'vulgarName'
                         },
                         {
                             label: 'Agente Transmissor',
