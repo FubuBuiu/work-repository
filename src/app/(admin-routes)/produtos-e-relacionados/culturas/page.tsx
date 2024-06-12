@@ -2,8 +2,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { FaSearch } from 'react-icons/fa';
-import { FaPlus } from 'react-icons/fa6';
+import { FaPlus, FaSearch } from 'react-icons/fa';
 
 import Button from '@/components/basic/Button';
 import Select from '@/components/basic/Select';
@@ -11,99 +10,102 @@ import { Table } from '@/components/basic/Table';
 import TextField from '@/components/basic/TextField';
 import { ProductRouters } from '@/routers';
 
-const ListSubstancePage = () => {
+const Page = () => {
     const { control, handleSubmit } = useForm();
-    const onSubmit = (data: any) => console.log(data);
+    const onSubmit = (data: any) => {
+        console.log(data);
+    };
+
     const listMock = [
         {
+            vulgarName: 'Nome Vulgar',
             scientificName: 'Nome Científico',
-            popularName: 'Nome Vulgar',
-            chemicalGroup: 'Grupo Químico',
-            anvisaCode: 'Código Anvisa',
             situation: 'Ativo'
         },
         {
+            vulgarName: 'Nome Vulgar',
             scientificName: 'Nome Científico',
-            popularName: 'Nome Vulgar',
-            chemicalGroup: 'Grupo Químico',
-            anvisaCode: 'Código Anvisa',
             situation: 'Ativo'
         },
         {
+            vulgarName: 'Nome Vulgar',
             scientificName: 'Nome Científico',
-            popularName: 'Nome Vulgar',
-            chemicalGroup: 'Grupo Químico',
-            anvisaCode: 'Código Anvisa',
             situation: 'Ativo'
         },
         {
+            vulgarName: 'Nome Vulgar',
             scientificName: 'Nome Científico',
-            popularName: 'Nome Vulgar',
-            chemicalGroup: 'Grupo Químico',
-            anvisaCode: 'Código Anvisa',
             situation: 'Ativo'
         },
         {
+            vulgarName: 'Nome Vulgar',
             scientificName: 'Nome Científico',
-            popularName: 'Nome Vulgar',
-            chemicalGroup: 'Grupo Químico',
-            anvisaCode: 'Código Anvisa',
             situation: 'Ativo'
         },
         {
+            vulgarName: 'Nome Vulgar',
             scientificName: 'Nome Científico',
-            popularName: 'Nome Vulgar',
-            chemicalGroup: 'Grupo Químico',
-            anvisaCode: 'Código Anvisa',
             situation: 'Ativo'
         },
         {
+            vulgarName: 'Nome Vulgar',
             scientificName: 'Nome Científico',
-            popularName: 'Nome Vulgar',
-            chemicalGroup: 'Grupo Químico',
-            anvisaCode: 'Código Anvisa',
             situation: 'Ativo'
         },
         {
+            vulgarName: 'Nome Vulgar',
             scientificName: 'Nome Científico',
-            popularName: 'Nome Vulgar',
-            chemicalGroup: 'Grupo Químico',
-            anvisaCode: 'Código Anvisa',
             situation: 'Ativo'
         },
         {
+            vulgarName: 'Nome Vulgar',
             scientificName: 'Nome Científico',
-            popularName: 'Nome Vulgar',
-            chemicalGroup: 'Grupo Químico',
-            anvisaCode: 'Código Anvisa',
             situation: 'Ativo'
         },
         {
+            vulgarName: 'Nome Vulgar',
             scientificName: 'Nome Científico',
-            popularName: 'Nome Vulgar',
-            chemicalGroup: 'Grupo Químico',
-            anvisaCode: 'Código Anvisa',
+            situation: 'Ativo'
+        },
+        {
+            vulgarName: 'Nome Vulgar',
+            scientificName: 'Nome Científico',
+            situation: 'Ativo'
+        },
+        {
+            vulgarName: 'Nome Vulgar',
+            scientificName: 'Nome Científico',
+            situation: 'Ativo'
+        },
+        {
+            vulgarName: 'Nome Vulgar',
+            scientificName: 'Nome Científico',
+            situation: 'Ativo'
+        },
+        {
+            vulgarName: 'Nome Vulgar',
+            scientificName: 'Nome Científico',
             situation: 'Ativo'
         }
     ];
 
     return (
         <>
-            <h2 className='text-title'>Substâncias</h2>
+            <h1 className='text-title'>Culturas</h1>
             <div className='my-3 flex justify-end'>
-                <Link href={ProductRouters.SUBSTANCES.REGISTER}>
-                    <Button text='Adicionar Substância' icon={{ icon: FaPlus, size: 20 }} startIcon />
+                <Link href={ProductRouters.CULTURES.REGISTER}>
+                    <Button className='justify-end' text='Adicionar Cultura' icon={{ icon: FaPlus, size: 20 }} startIcon />
                 </Link>
             </div>
             <Table.Root>
                 <Table.Filters>
                     <form className='flex w-full justify-end gap-x-3'>
+                        <TextField outsideTitle='Nome Vulgar' control={control} name='vulgarName' placeholder='text' />
                         <TextField outsideTitle='Nome Científico' control={control} name='scientificName' placeholder='text' />
-                        <TextField outsideTitle='Nome Vulgar' control={control} name='popularName' placeholder='text' />
                         <Select
                             control={control}
                             outsideTitle='Situação'
-                            name='situation'
+                            name='situacao'
                             options={[
                                 { key: '1', value: 'Ativo' },
                                 { key: '2', value: 'Inativo' }
@@ -115,20 +117,12 @@ const ListSubstancePage = () => {
                 <Table.Content
                     header={[
                         {
+                            label: 'Nome Vulgar',
+                            key: 'vulgarName'
+                        },
+                        {
                             label: 'Nome Científico',
                             key: 'scientificName'
-                        },
-                        {
-                            label: 'Nome Vulgar',
-                            key: 'popularName'
-                        },
-                        {
-                            label: 'Grupo Químico',
-                            key: 'chemicalGroup'
-                        },
-                        {
-                            label: 'Código Anvisa',
-                            key: 'anvisaCode'
                         },
                         {
                             label: 'Situação',
@@ -143,4 +137,5 @@ const ListSubstancePage = () => {
         </>
     );
 };
-export default ListSubstancePage;
+
+export default Page;
