@@ -1,4 +1,4 @@
-import { CSSProperties, SelectHTMLAttributes, createElement, useState } from 'react';
+import { createElement, CSSProperties, SelectHTMLAttributes, useState } from 'react';
 import { Control, FieldValues, useController } from 'react-hook-form';
 import { IconType } from 'react-icons';
 
