@@ -1,7 +1,8 @@
+import { useForm } from 'react-hook-form';
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-icons/md';
+
 import Button from '../Button';
 import Select, { ListOptionType } from '../Select';
-import { useForm } from 'react-hook-form';
 
 interface TablePaginationProps {
     nextPage: () => void;

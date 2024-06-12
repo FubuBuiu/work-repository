@@ -91,7 +91,7 @@ const ListPraguePage = () => {
 
     return (
         <>
-            <h2 className='text-3xl font-bold underline decoration-primary underline-offset-8'>Pragas</h2>
+            <h2 className='text-title'>Pragas</h2>
             <div className='flex justify-end'>
                 <Link href={ProductRouters.PRAGUE.REGISTER} className='my-3'>
                     <Button text='Adicionar Praga' icon={{ icon: FaPlus, size: 20 }} startIcon />
