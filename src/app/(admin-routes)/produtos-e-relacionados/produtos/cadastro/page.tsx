@@ -4,7 +4,7 @@ import React from 'react';
 import Button from '@/components/basic/Button';
 import Checkbox from '@/components/basic/Checkbox';
 import Select from '@/components/basic/Select';
-import { SelectList } from '@/components/basic/SelectList';
+import SelectList from '@/components/basic/SelectList';
 import Textarea from '@/components/basic/Textarea';
 import TextField from '@/components/basic/TextField';
 import { CardForm } from '@/components/cardForm';
@@ -22,7 +22,7 @@ const RegisterForm: React.FC = () => {
     ];
     return (
         <>
-            <h1 className='text-2xl font-bold text-gray-800 dark:text-gray-100'>Cadastro de Produtos</h1>
+            <h1 className='text-title'>Cadastro de Produtos</h1>
             <form onSubmit={onSubmit} className='mt-5 flex w-full flex-1 flex-col gap-y-4'>
                 <CardForm title='Dados Gerais'>
                     <TextField required control={control} name='marca_comercial' outsideTitle='Marca Comercial' />

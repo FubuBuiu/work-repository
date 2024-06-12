@@ -9,11 +9,11 @@ export const useRegisterPrague = () => {
     const onSubmit = (data: any) => console.log(data);
 
     const handleAddPrague = () => {
-        const culturas = getValues('relatedCrops');
+        const culturas = getValues('relatedCultures');
         const cropList = getValues('cropList') ?? [];
         if (!culturas || cropList.includes(culturas)) return;
         setValue('cropList', [...cropList, culturas]);
-        setValue('relatedCrops', '');
+        setValue('relatedCultures', '');
     };
 
     const removePrague = (item: string) => {
