@@ -74,7 +74,7 @@ export default function TextField({
     const GenericEndIcon = () => endIcon && createElement(endIcon);
 
     return (
-        <label className='form-control min-w-fit' style={{ width: width }}>
+        <label className='form-control min-w-fit' style={{ width: widthField }}>
             {(outsideTitle || topRightText) && (
                 <div className='label'>
                     <span
