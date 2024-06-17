@@ -4,7 +4,7 @@ import { FaRegTimesCircle } from 'react-icons/fa';
 import { FaSkullCrossbones, FaTriangleExclamation } from 'react-icons/fa6';
 
 import Button from '@/components/basic/Button';
-import { RadioGroupInput } from '@/components/basic/Radio';
+import RadioGroupInput from '@/components/basic/Radio';
 import Select from '@/components/basic/Select';
 import Textarea from '@/components/basic/Textarea';
 import TextField from '@/components/basic/TextField';
@@ -31,13 +31,12 @@ const PageRegister = () => {
                             title='Pictograma'
                             name='pictogram'
                             options={[
-                                { label: <FaTriangleExclamation size={35} />, value: '111' },
-                                { label: <FaSkullCrossbones size={35} />, value: '222' },
-                                { label: <FaRegTimesCircle size={35} />, value: '333' }
+                                { label: { icon: FaTriangleExclamation, size: 35 }, value: '111' },
+                                { label: { icon: FaSkullCrossbones, size: 35 }, value: '222' },
+                                { label: { icon: FaRegTimesCircle, size: 35 }, value: '333' }
                             ]}
                         />
                     </div>
-
                     <div className='col-span-2'>
                         <Textarea rows={4} name='observation' control={control} title='Observação' />
                     </div>

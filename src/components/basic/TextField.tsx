@@ -5,7 +5,7 @@ import { IconType } from 'react-icons';
 interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
     startIcon?: IconType;
     endIcon?: IconType;
-    width?: string;
+    widthField?: string;
     outsideTitle?: string;
     insideTitle?: string;
     topRightText?: string;
@@ -29,7 +29,7 @@ enum FieldSizeEnum {
 export default function TextField({
     startIcon,
     endIcon,
-    width,
+    widthField,
     outsideTitle,
     insideTitle,
     topRightText,

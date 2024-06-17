@@ -2,7 +2,7 @@
 import React from 'react';
 
 import Button from '@/components/basic/Button';
-import { RadioGroupInput } from '@/components/basic/Radio';
+import RadioGroupInput from '@/components/basic/Radio';
 import Textarea from '@/components/basic/Textarea';
 import TextField from '@/components/basic/TextField';
 import { CardForm } from '@/components/cardForm';
