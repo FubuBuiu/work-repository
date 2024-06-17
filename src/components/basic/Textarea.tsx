@@ -11,19 +11,15 @@ enum TextareaSizeEnum {
 type TextareaSizeType = 'extra-small' | 'small' | 'medium' | 'large';
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-    className?: string;
     size?: TextareaSizeType;
-    title?: string;
-    required?: boolean;
     topRightText?: string;
     bottomRightText?: string;
-    color?: string;
     errorColor?: string;
     control: Control<FieldValues>;
-    name?: string;
+    width?: string;
 }
 
-export default function Textarea({ className, size, disabled, title, required = false, topRightText, bottomRightText, color, errorColor, control, name = '', ...props }: TextareaProps) {
+export default function Textarea({ className, size, width, disabled, title, required = false, topRightText, bottomRightText, color, errorColor, control, name = '', ...props }: TextareaProps) {
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
     const { field, fieldState } = useController({
@@ -41,7 +37,7 @@ export default function Textarea({ className, size, disabled, title, required = 
     };
 
     return (
-        <label className='form-control w-full' onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
+        <label className='form-control w-full' style={{ width: width ?? undefined }} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
             {(title || topRightText) && (
                 <div className='label'>
                     <span
@@ -49,13 +45,13 @@ export default function Textarea({ className, size, disabled, title, required = 
                         style={titleWithCustomColor}
                     >
                         {title}
-                        {required && <span className='ml-1 text-red-500'>*</span>}
+                        {required && <span className={`ml-1 ${!disabled && 'text-red-500'}`}>*</span>}
                     </span>
                     <span className={`label-text-alt ${disabled && 'field-title-disabled'}`}>{topRightText}</span>
                 </div>
             )}
             <textarea
-                className={`${size && TextareaSizeEnum[size]} textarea textarea-bordered border-2 bg-transparent focus-within:outline-none ${!isFocused && 'hover:border-base-content'} ${defaultTextareaStyle} ${disabled && 'field-disabled'} ${className}`}
+                className={`${size && TextareaSizeEnum[size]} textarea textarea-bordered w-full border-2 bg-transparent focus-within:outline-none ${!isFocused && 'hover:border-base-content'} ${defaultTextareaStyle} ${disabled && 'field-disabled'} ${className}`}
                 disabled={disabled}
                 {...props}
                 {...field}

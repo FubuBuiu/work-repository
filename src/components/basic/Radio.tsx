@@ -1,54 +1,60 @@
-import React from 'react';
-import { useController } from 'react-hook-form';
+import React, { InputHTMLAttributes, createElement } from 'react';
+import { Control, FieldValues, useController } from 'react-hook-form';
+import { IconType } from 'react-icons';
 
-interface IProps {
-    control: any;
-    name: string;
+type Icon = { icon: IconType; size?: number };
+
+type RadioOption = { label: string | Icon; value: string; checked?: boolean };
+
+interface IRadioProps extends InputHTMLAttributes<HTMLInputElement> {
+    control: Control<FieldValues>;
     errorColor?: string;
     textColor?: string;
-    className?: string;
-    options: { label: string | React.ReactNode; value: string }[];
-    title: string;
-    required?: boolean;
+    options: RadioOption[];
 }
 
-export const RadioGroupInput = ({ control, name, errorColor, textColor, options, title, required }: IProps) => {
+export default function RadioGroup({ className, control, name = '', defaultValue = '', errorColor, textColor, options, title, required }: IRadioProps) {
     const {
-        field: { value, onChange, onBlur },
+        field,
         fieldState: { error }
     } = useController({
         name,
         control,
-        defaultValue: ''
+        defaultValue
     });
+
+    const renderLabel = (label: string | Icon) => {
+        if (typeof label === 'string') {
+            return label;
+        }
+        return createElement(label.icon, { size: label.size });
+    };
 
     return (
         <div className='form-control'>
             {title && (
-                <div className='label'>
-                    <span className={`label-text font-medium  ${error && !errorColor && '!text-error'}`}>
+                <div className='label px-0'>
+                    <span className={`label-text font-medium  ${error && !errorColor && '!text-error'}`} style={{ color: error && errorColor ? errorColor : textColor ? textColor : undefined }}>
                         {title}
                         {required && <span className='ml-1 text-red-500'>*</span>}
                     </span>
                 </div>
             )}
-            <label className='label cursor-pointer'>
+            <div className='flex flex-row gap-5 p-0'>
                 {options?.map(option => (
-                    <label key={option.value} className='flex flex-col items-center justify-center gap-2'>
-                        {
-                            <span className='label-text' style={{ color: textColor ? textColor : undefined }}>
-                                {option.label}
-                            </span>
-                        }
-                        <input type='radio' className='radio checked:bg-blue-500' value={option.value} checked={value === option.value} onChange={onChange} onBlur={onBlur} />
+                    <label key={option.value} className='flex cursor-pointer flex-row items-center justify-center gap-2'>
+                        <input type='radio' className={`radio checked:bg-primary ${className}`} {...field} value={option.value} defaultChecked={option.checked} />
+                        <span className='label-text' style={{ color: textColor ? textColor : undefined }}>
+                            {renderLabel(option.label)}
+                        </span>
                     </label>
-                ))}{' '}
-            </label>
+                ))}
+            </div>
             {error && (
-                <span className={`text-xs ${!errorColor && '!text-error'}`} style={{ color: errorColor ? errorColor : undefined }}>
+                <span className={`mt-2 text-xs ${!errorColor && '!text-error'}`} style={{ color: errorColor ? errorColor : undefined }}>
                     {error.message}
                 </span>
             )}
         </div>
     );
-};
+}

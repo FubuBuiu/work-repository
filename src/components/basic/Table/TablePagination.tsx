@@ -1,8 +1,7 @@
-import { useForm } from 'react-hook-form';
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-icons/md';
-
 import Button from '../Button';
 import Select, { ListOptionType } from '../Select';
+import { useForm } from 'react-hook-form';
 
 interface TablePaginationProps {
     nextPage: () => void;
@@ -25,7 +24,7 @@ export function TablePagination({ nextPage, prevPage, currentPage, totalPages, c
         <div className='flex h-[100px] items-end justify-end gap-10 p-2'>
             <div className=' flex w-fit items-center gap-3'>
                 <span className='font-medium'>Linhas por página:</span>
-                <Select control={control} options={listPerPageOptions} defaultValue={'10'} onChange={event => changeItemsPerPage(parseInt(event.target.value))} />
+                <Select width='fit-content' control={control} options={listPerPageOptions} defaultValue={'10'} onChange={event => changeItemsPerPage(parseInt(event.target.value))} />
             </div>
             <div className='join h-fit'>
                 <Button className='join-item shadow-none' disabled={currentPage === 1} onClick={prevPage} noAnimation variant='icon' icon={{ icon: MdKeyboardDoubleArrowLeft }} />

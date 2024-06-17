@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import { MdCheckCircle,MdError, MdInfo, MdWarning } from 'react-icons/md';
+import { MdError, MdWarning, MdInfo, MdCheckCircle } from 'react-icons/md';
 
 type VariantType = 'info' | 'error' | 'warning' | 'success';
 
@@ -10,15 +10,7 @@ enum VariantEnum {
     'success' = 'alert-success'
 }
 
-export default function Alert({
-    className,
-    isVisible = false,
-    setIsVisible = () => {},
-    title,
-    message,
-    variant,
-    timeout = 5000
-}: {
+interface IAlertProps {
     isVisible?: boolean;
     setIsVisible?: Dispatch<SetStateAction<boolean>>;
     title?: string;
@@ -26,7 +18,9 @@ export default function Alert({
     variant?: VariantType;
     timeout?: number;
     className?: string;
-}) {
+}
+
+export default function Alert({ className, isVisible = false, setIsVisible = () => {}, title, message, variant, timeout = 5000 }: IAlertProps) {
     const textColor =
         variant &&
         (variant === 'error'
@@ -48,7 +42,7 @@ export default function Alert({
     }, [isVisible, timeout]);
 
     return isVisible ? (
-        <div className='animate-slideDown fixed bottom-0 left-0 right-0 mb-5 flex w-full flex-row justify-center px-6 duration-500'>
+        <div className='fixed bottom-0 left-0 right-0 mb-5 flex w-full animate-slideDown flex-row justify-center px-6 duration-500'>
             <div role='alert' className={`alert ${variant && VariantEnum[variant]} shadow-lg ${className}`}>
                 {variant === 'error' ? (
                     <MdError size={20} />

@@ -1,13 +1,8 @@
 import { HTMLAttributes } from 'react';
 
-interface CardBodyPropsType extends HTMLAttributes<HTMLDivElement> {
-    className?: string;
-    title?: string;
-}
-export default function CardBody({ className, children, title, ...props }: CardBodyPropsType) {
+export default function CardBody({ className, children, ...props }: HTMLAttributes<HTMLDivElement>) {
     return (
-        <div className={`card-body ${className}`} {...props}>
-            {title && <h2 className='card-title'>{title}</h2>}
+        <div className={`card-body gap-0 !p-0  ${className}`} {...props}>
             {children}
         </div>
     );

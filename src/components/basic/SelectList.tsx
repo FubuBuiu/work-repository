@@ -1,28 +1,25 @@
-import { createElement, CSSProperties, InputHTMLAttributes, useState } from 'react';
+import { CSSProperties, InputHTMLAttributes, createElement, useState } from 'react';
 import { Control, FieldValues, useController } from 'react-hook-form';
 import { IconType } from 'react-icons';
 
+//TODO Tentar replicar propriedade size do Select para esse componente
 interface SelectListPropsType extends InputHTMLAttributes<HTMLInputElement> {
     control: Control<FieldValues>;
-    name?: string;
     options?: {
         value: string;
     }[];
     required?: boolean;
-    title?: string;
     errorColor?: string;
-    color?: string;
     topRightLabel?: string | IconType;
-    className?: string;
     disabled?: boolean;
 }
 
-export default function SelectList({ control, name = '', options = [], title, className, color, disabled, errorColor, required, topRightLabel, ...props }: SelectListPropsType) {
+export default function SelectList({ control, name = '', options = [], title, className, color, disabled, errorColor, defaultValue = '', required, topRightLabel, ...props }: SelectListPropsType) {
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
     const { field, fieldState } = useController({
         control,
-        defaultValue: '',
+        defaultValue,
         name
     });
 

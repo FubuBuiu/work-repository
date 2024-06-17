@@ -1,4 +1,3 @@
-'use client';
 import { useState } from 'react';
 
 interface HeaderTable {
@@ -103,9 +102,11 @@ export function TableContent({
                             </tr>
                         ))
                     ) : (
-                        <td className='text-center font-bold' colSpan={header.length}>
-                            {emptyMessage}
-                        </td>
+                        <tr>
+                            <td className='text-center font-bold' colSpan={header.length}>
+                                {emptyMessage}
+                            </td>
+                        </tr>
                     )}
                 </tbody>
             </table>

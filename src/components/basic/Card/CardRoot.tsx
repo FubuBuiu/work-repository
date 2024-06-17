@@ -1,14 +1,15 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
 
 interface CardRootPropsType extends HTMLAttributes<HTMLDivElement> {
-    children: ReactNode;
-    outlined?: boolean;
     glass?: boolean;
 }
-export default function CardRoot({ children, className, outlined, glass, ...props }: CardRootPropsType) {
+
+export default function CardRoot({ children, className, glass, ...props }: CardRootPropsType) {
     return (
-        <div className={`card h-fit ${glass ? 'glass' : 'bg-base-100'} ${outlined ? '' : 'shadow-xl'} ${className}`} {...props}>
-            {children}
+        <div className='w-fit'>
+            <div className={`card gap-2 shadow-md  ${glass ? 'glass' : 'bg-base-100'} ${className} ${className?.includes('card-compact') ? 'p-4' : 'p-8'}`} {...props}>
+                {children}
+            </div>
         </div>
     );
 }

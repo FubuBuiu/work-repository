@@ -1,4 +1,4 @@
-import { createElement, CSSProperties, SelectHTMLAttributes, useState } from 'react';
+import { CSSProperties, SelectHTMLAttributes, createElement, useState } from 'react';
 import { Control, FieldValues, useController } from 'react-hook-form';
 import { IconType } from 'react-icons';
 
@@ -7,17 +7,24 @@ export interface ListOptionType {
     key: string;
 }
 
-interface SelectPropsType extends SelectHTMLAttributes<HTMLSelectElement> {
+type SelectSizeType = 'extra-small' | 'small' | 'large';
+
+enum SelectSizeEnum {
+    'extra-small' = 'select-xs',
+    small = 'select-sm',
+    large = 'select-lg'
+}
+
+interface SelectPropsType extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
     options?: ListOptionType[];
     insideTitle?: string;
     outsideTitle?: string;
     topRightLabel?: string | IconType;
     bottomRightLabel?: string | IconType;
-    color?: string;
     errorColor?: string;
     control: Control<FieldValues>;
-    name?: string;
-    widthField?: string;
+    size?: SelectSizeType;
+    width?: string;
 }
 
 export default function Select({
@@ -31,16 +38,18 @@ export default function Select({
     color,
     errorColor,
     control,
-    widthField,
+    width,
     required,
     name = '',
+    defaultValue = '',
+    size,
     ...props
 }: SelectPropsType) {
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
     const { field, fieldState } = useController({
         control,
-        defaultValue: '',
+        defaultValue,
         name
     });
 
@@ -57,18 +66,18 @@ export default function Select({
     };
 
     return (
-        <label className='form-control w-full ' style={{ width: widthField ?? undefined }} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
+        <label className='form-control w-full ' style={{ width: width ?? undefined }} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
             {(outsideTitle || topRightLabel) && (
                 <div className='label'>
                     <span className={`label-text font-medium ${disabled ? 'field-title-disabled' : `${!color && isFocused && 'text-primary'}`}`} style={color ? titleStyleWithCustomColor : undefined}>
                         {outsideTitle}
-                        {required && <span className='ml-1 text-red-500'>*</span>}
+                        {required && <span className={`ml-1 ${!disabled && 'text-red-500'}`}>*</span>}
                     </span>
                     <span className={`label-text-alt ${disabled && 'field-title-disabled'}`}>{topRightLabel && generateLabel(topRightLabel)}</span>
                 </div>
             )}
             <select
-                className={`select select-bordered w-full border-2 bg-transparent focus-within:outline-none ${disabled ? 'field-disabled' : `${defaultSelectStyle}  ${!isFocused && 'hover:border-black'}`} ${className} `}
+                className={`select ${size && SelectSizeEnum[size]} select-bordered w-full border-2 bg-transparent focus-within:outline-none ${disabled ? 'field-disabled' : `${defaultSelectStyle}  ${!isFocused && 'hover:border-black'}`} ${className} `}
                 {...props}
                 {...field}
                 style={borderStyleWithCustomColor}
