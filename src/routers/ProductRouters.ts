@@ -1,4 +1,4 @@
-const PRODUCT_PREFIX = '/produtos-e-relacionados';
+const MAIN_PATH_PREFIX = '/produtos-e-relacionados';
 const SUBSTANCES_PREFIX = '/substancias';
 const PRAGUE_PREFIX = '/pragas';
 const CULTURES_PREFIX = '/culturas';
@@ -7,34 +7,34 @@ const CLASS_TOXICOLOGICAL_PREFIX = '/classe-toxicologica';
 
 const Routes = {
     PRODUCTS: {
-        REGISTER: PRODUCT_PREFIX + '/produtos/cadastro',
-        LIST: PRODUCT_PREFIX + '/produtos/',
-        UPDATE: PRODUCT_PREFIX + PRODUCT_PREFIX + 'produtos/update'
+        REGISTER: MAIN_PATH_PREFIX + '/produtos/cadastro',
+        LIST: MAIN_PATH_PREFIX + '/produtos/',
+        UPDATE: MAIN_PATH_PREFIX + 'produtos/atualizar'
     },
     SUBSTANCES: {
-        REGISTER: PRODUCT_PREFIX + SUBSTANCES_PREFIX + '/cadastro',
-        LIST: PRODUCT_PREFIX + SUBSTANCES_PREFIX + '/',
-        UPDATE: SUBSTANCES_PREFIX + '/update'
+        REGISTER: MAIN_PATH_PREFIX + SUBSTANCES_PREFIX + '/cadastro',
+        LIST: MAIN_PATH_PREFIX + SUBSTANCES_PREFIX + '/',
+        UPDATE: SUBSTANCES_PREFIX + '/atualizar'
     },
     PRAGUE: {
-        REGISTER: PRODUCT_PREFIX + PRAGUE_PREFIX + '/cadastro',
-        LIST: PRODUCT_PREFIX + PRAGUE_PREFIX + '/',
-        UPDATE: PRODUCT_PREFIX + PRAGUE_PREFIX + '/update'
+        REGISTER: MAIN_PATH_PREFIX + PRAGUE_PREFIX + '/cadastro',
+        LIST: MAIN_PATH_PREFIX + PRAGUE_PREFIX + '/',
+        UPDATE: MAIN_PATH_PREFIX + PRAGUE_PREFIX + '/atualizar'
     },
     CULTURES: {
-        REGISTER: PRODUCT_PREFIX + CULTURES_PREFIX + '/cadastro',
-        LIST: PRODUCT_PREFIX + CULTURES_PREFIX + '/',
-        UPDATE: PRODUCT_PREFIX + CULTURES_PREFIX + '/update'
+        REGISTER: MAIN_PATH_PREFIX + CULTURES_PREFIX + '/cadastro',
+        LIST: MAIN_PATH_PREFIX + CULTURES_PREFIX + '/',
+        UPDATE: MAIN_PATH_PREFIX + CULTURES_PREFIX + '/atualizar'
     },
     CLASS_IN_USE: {
-        REGISTER: PRODUCT_PREFIX + CLASS_IN_USE_PREFIX + '/cadastro',
-        LIST: PRODUCT_PREFIX + CLASS_IN_USE_PREFIX + '/',
-        UPDATE: PRODUCT_PREFIX + CLASS_IN_USE_PREFIX + '/update'
+        REGISTER: MAIN_PATH_PREFIX + CLASS_IN_USE_PREFIX + '/cadastro',
+        LIST: MAIN_PATH_PREFIX + CLASS_IN_USE_PREFIX + '/',
+        UPDATE: MAIN_PATH_PREFIX + CLASS_IN_USE_PREFIX + '/atualizar'
     },
     CLASS_TOXICOLOGICAL: {
-        REGISTER: PRODUCT_PREFIX + CLASS_TOXICOLOGICAL_PREFIX + '/cadastro',
-        LIST: PRODUCT_PREFIX + CLASS_TOXICOLOGICAL_PREFIX + '/',
-        UPDATE: PRODUCT_PREFIX + CLASS_TOXICOLOGICAL_PREFIX + '/update'
+        REGISTER: MAIN_PATH_PREFIX + CLASS_TOXICOLOGICAL_PREFIX + '/cadastro',
+        LIST: MAIN_PATH_PREFIX + CLASS_TOXICOLOGICAL_PREFIX + '/',
+        UPDATE: MAIN_PATH_PREFIX + CLASS_TOXICOLOGICAL_PREFIX + '/atualizar'
     }
 } as const;
 

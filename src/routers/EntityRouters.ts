@@ -10,37 +10,37 @@ const Routes = {
     FABRICANTES: {
         REGISTER: PREFIX_FABRICANTES + '/register',
         LIST: PREFIX_FABRICANTES + '/',
-        UPDATE: PREFIX_FABRICANTES + '/update'
+        UPDATE: PREFIX_FABRICANTES + '/atualizar'
     },
     PRODUTOS: {
         REGISTER: PREFIX_PRODUTOS + '/register',
         LIST: PREFIX_PRODUTOS + '/',
-        UPDATE: PREFIX_PRODUTOS + '/update'
+        UPDATE: PREFIX_PRODUTOS + '/atualizar'
     },
     REVENDEDORES: {
         REGISTER: PREFIX_REVENDEDORES + '/register',
         LIST: PREFIX_REVENDEDORES + '/',
-        UPDATE: PREFIX_REVENDEDORES + '/update'
+        UPDATE: PREFIX_REVENDEDORES + '/atualizar'
     },
     PRODUTORES: {
         REGISTER: PREFIX_PRODUTORES + '/register',
         LIST: PREFIX_PRODUTORES + '/',
-        UPDATE: PREFIX_PRODUTORES + '/update'
+        UPDATE: PREFIX_PRODUTORES + '/atualizar'
     },
     APLICADORES: {
         REGISTER: PREFIX_APLICADORES + '/register',
         LIST: PREFIX_APLICADORES + '/',
-        UPDATE: PREFIX_APLICADORES + '/update'
+        UPDATE: PREFIX_APLICADORES + '/atualizar'
     },
     CENTRAIS_DE_DESCARTE: {
         REGISTER: PREFIX_CENTRAIS_DE_DESCARTE + '/register',
         LIST: PREFIX_CENTRAIS_DE_DESCARTE + '/',
-        UPDATE: PREFIX_CENTRAIS_DE_DESCARTE + '/update'
+        UPDATE: PREFIX_CENTRAIS_DE_DESCARTE + '/atualizar'
     },
     ESTACOES_EXPERIMENTAIS: {
         REGISTER: PREFIX_ESTACOES_EXPERIMENTAIS + '/register',
         LIST: PREFIX_ESTACOES_EXPERIMENTAIS + '/',
-        UPDATE: PREFIX_ESTACOES_EXPERIMENTAIS + '/update'
+        UPDATE: PREFIX_ESTACOES_EXPERIMENTAIS + '/atualizar'
     }
 } as const;
 
@@ -61,7 +61,7 @@ type RoutesWithEndPaths = {
     };
 };
 
-const EntitysRouter: RoutesWithEndPaths = {
+const EntityRouters: RoutesWithEndPaths = {
     FABRICANTES: Routes.FABRICANTES,
     PRODUTOS: Routes.PRODUTOS,
     REVENDEDORES: Routes.REVENDEDORES,
@@ -71,4 +71,4 @@ const EntitysRouter: RoutesWithEndPaths = {
     ESTACOES_EXPERIMENTAIS: Routes.ESTACOES_EXPERIMENTAIS
 };
 
-export { EntitysRouter };
+export { EntityRouters };
