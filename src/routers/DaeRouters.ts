@@ -1,0 +1,32 @@
+const PREFIX_BASE = '/dae';
+const PREFIX_SERVICE_CHARGE = '/taxa-de-servico';
+const PREFIX_GENERATION_OF_COLLECTION_DOCUMENTS = '/geracao-de-documentos-de-arrecadacao';
+
+const Routes = {
+    DASHBOARD: { LIST: PREFIX_BASE + '/dashboard' },
+    SERVICE_CHARGE: { LIST: PREFIX_BASE + PREFIX_SERVICE_CHARGE, UPDATE: PREFIX_BASE + PREFIX_SERVICE_CHARGE + '/atualizar', REGISTER: PREFIX_BASE + PREFIX_SERVICE_CHARGE + '/registrar' },
+    GENERATION_OF_COLLECTION_DOCUMENTS: {
+        LIST: PREFIX_BASE + PREFIX_GENERATION_OF_COLLECTION_DOCUMENTS,
+        // UPDATE: PREFIX_BASE + PREFIX_GENERATION_OF_COLLECTION_DOCUMENTS + '/atualizar',
+        REGISTER: PREFIX_BASE + PREFIX_GENERATION_OF_COLLECTION_DOCUMENTS + '/registrar'
+    }
+} as const;
+
+enum Route {
+    DASHBOARD = 'DASHBOARD',
+    SERVICE_CHARGE = 'SERVICE_CHARGE',
+    GENERATION_OF_COLLECTION_DOCUMENTS = 'GENERATION_OF_COLLECTION_DOCUMENTS'
+}
+
+type EndPath = keyof (typeof Routes)[Route];
+type RoutesWithEndPaths = {
+    [key in Route]: {
+        [key in EndPath]: string;
+    };
+};
+
+export const DaeRouters: RoutesWithEndPaths = {
+    DASHBOARD: Routes.DASHBOARD,
+    SERVICE_CHARGE: Routes.SERVICE_CHARGE,
+    GENERATION_OF_COLLECTION_DOCUMENTS: Routes.GENERATION_OF_COLLECTION_DOCUMENTS
+};

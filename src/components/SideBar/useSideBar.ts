@@ -9,12 +9,16 @@ import {
     FaBoxesStacked,
     FaBoxOpen,
     FaBug,
+    FaChartPie,
     FaClipboardCheck,
+    FaDollarSign,
     FaFileInvoice,
+    FaFileInvoiceDollar,
     FaFilter,
     FaFlask,
     FaFolderOpen,
     FaGavel,
+    FaHandHoldingDollar,
     FaIndustry,
     FaListUl,
     FaRecycle,
@@ -134,6 +138,15 @@ export const useSideBar = () => {
             items: [
                 { title: 'Dar baixa', url: '/dar-baixa', icon: FaArrowDown },
                 { title: 'Incluir', url: '/incluir', icon: FaPlusCircle }
+            ]
+        },
+        {
+            title: 'DAE',
+            icon: FaDollarSign,
+            items: [
+                { title: 'Dashboard', url: GlobalRouters.dae.DASHBOARD.LIST, icon: FaChartPie },
+                { title: 'Taxa de serviços', url: GlobalRouters.dae.SERVICE_CHARGE.LIST, icon: FaHandHoldingDollar },
+                { title: 'Geração de Documentos de Arrecadação Avulso', url: GlobalRouters.dae.GENERATION_OF_COLLECTION_DOCUMENTS.LIST, icon: FaFileInvoiceDollar }
             ]
         }
     ];
