@@ -4,6 +4,7 @@ import { Card } from '@/components/basic/Card';
 import RadioGroup from '@/components/basic/Radio';
 import Select from '@/components/basic/Select';
 import TextField from '@/components/basic/TextField';
+import Textarea from '@/components/basic/Textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as zod from 'zod';
@@ -57,6 +58,9 @@ export default function CollectionDocumentGenerationForm() {
                 <TextField control={control} required size='small' name='municipalityCode' outsideTitle='Município Sacado' />
                 <TextField control={control} name='municipalityName' size='small' outsideTitle=' ' disabled />
                 <TextField control={control} required name='documentDueDate' size='small' outsideTitle='Data de Vencimento do Documento' />
+                <div className='col-span-full'>
+                    <Textarea control={control} name='reference' title='Referência' />
+                </div>
             </Card.Body>
             <Card.Actions className='gap-2'>
                 <Button text='Gravar' onClick={handleSubmit(onSubmit)} />
