@@ -1,34 +1,36 @@
-import { useState } from 'react';
+import { TableHTMLAttributes, useState } from 'react';
+import Button from '../Button';
+import { IconType } from 'react-icons';
+import { FaArrowDownLong, FaArrowUpLong } from 'react-icons/fa6';
+import Tooltip from '../Tooltip';
 
-interface HeaderTable {
+export type HeaderTable = {
     label: string;
     key: string;
-}
+};
 
 type orderType = 'normal' | 'crescent' | 'decrescent';
 
-export function TableContent({
-    header,
-    data = [],
-    emptyMessage = 'Nenhum dado encontrado',
-    enumaratedRows,
-    ...props
-}: React.TableHTMLAttributes<HTMLTableElement> & { header: HeaderTable[]; data?: Array<any>; enumaratedRows?: boolean; emptyMessage?: string }) {
+export type Action = {
+    label?: string;
+    tooltipText?: string;
+    icon?: { icon: IconType; size?: number | string; color?: string };
+    action: (value?: any) => void;
+};
+
+interface ITableProps extends TableHTMLAttributes<HTMLTableElement> {
+    header: HeaderTable[];
+    data?: Array<any>;
+    enumaratedRows?: boolean;
+    emptyMessage?: string;
+    actions?: Action[];
+}
+
+export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado encontrado', enumaratedRows, actions, ...props }: ITableProps) {
     const [list, setList] = useState(data);
     const [orderColumn, setOrderColumn] = useState<string | undefined>(undefined);
     const [order, setOrder] = useState<orderType>('normal');
     const [hoveredColumn, setHoveredColumn] = useState<string | undefined>(undefined);
-
-    const arrowUpOrderTable = (
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'>
-            <path d='M440-647 244-451q-12 12-28 11.5T188-452q-11-12-11.5-28t11.5-28l264-264q6-6 13-8.5t15-2.5q8 0 15 2.5t13 8.5l264 264q11 11 11 27.5T772-452q-12 12-28.5 12T715-452L520-647v447q0 17-11.5 28.5T480-160q-17 0-28.5-11.5T440-200v-447Z' />
-        </svg>
-    );
-    const arrowDownOrderTable = (
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'>
-            <path d='M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z' />
-        </svg>
-    );
 
     const handleOrdenation = (column: string): void => {
         if (data.length !== 0) {
@@ -82,7 +84,7 @@ export function TableContent({
                                 >
                                     {column.label}
                                     <div className={`w-[18px] ${hoveredColumn === column.key ? 'opacity-100' : 'opacity-0'} ${orderColumn === column.key && '!opacity-100'}`}>
-                                        {orderColumn === column.key && order === 'decrescent' ? arrowDownOrderTable : arrowUpOrderTable}
+                                        {orderColumn === column.key && order === 'decrescent' ? <FaArrowDownLong /> : <FaArrowUpLong />}
                                     </div>
                                 </div>
                             </th>
@@ -99,6 +101,23 @@ export function TableContent({
                                         <div className='w-fit'>{item[column.key]}</div>
                                     </td>
                                 ))}
+                                <td className='flex gap-2'>
+                                    {actions &&
+                                        actions.length !== 0 &&
+                                        actions.map((action, index) => (
+                                            <Tooltip message={action.tooltipText}>
+                                                <Button
+                                                    key={`action-${index}`}
+                                                    text={action.label}
+                                                    icon={action.icon}
+                                                    ghost={action.icon && true}
+                                                    variant={action.icon && 'icon'}
+                                                    onClick={action.action}
+                                                    size='small'
+                                                />
+                                            </Tooltip>
+                                        ))}
+                                </td>
                             </tr>
                         ))
                     ) : (
