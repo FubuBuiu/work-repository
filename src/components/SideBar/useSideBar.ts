@@ -144,8 +144,8 @@ export const useSideBar = () => {
             title: 'DAE',
             icon: FaDollarSign,
             items: [
-                { title: 'Dashboard', url: GlobalRouters.dae.DASHBOARD.LIST, icon: FaChartPie },
-                { title: 'Taxa de serviços', url: GlobalRouters.dae.SERVICE_CHARGE.LIST, icon: FaHandHoldingDollar },
+                { title: 'Dashboard', url: GlobalRouters.dae.DASHBOARDS.LIST, icon: FaChartPie },
+                { title: 'Taxa de serviços', url: GlobalRouters.dae.SERVICE_CHARGES.LIST, icon: FaHandHoldingDollar },
                 { title: 'Geração de Documentos de Arrecadação Avulso', url: GlobalRouters.dae.GENERATION_OF_COLLECTION_DOCUMENTS.LIST, icon: FaFileInvoiceDollar }
             ]
         }

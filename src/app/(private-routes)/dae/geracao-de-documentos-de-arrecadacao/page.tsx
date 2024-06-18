@@ -62,9 +62,8 @@ export default function CollectionDocumentGenerationForm() {
                     <Textarea control={control} name='reference' title='Referência' />
                 </div>
             </Card.Body>
-            <Card.Actions className='gap-2'>
+            <Card.Actions>
                 <Button text='Gravar' onClick={handleSubmit(onSubmit)} />
-                <Button text='Novo' />
             </Card.Actions>
         </Card.Root>
     );

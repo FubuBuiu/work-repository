@@ -8,4 +8,4 @@ const GlobalRouters = {
     dae: DaeRouters
 };
 
-export { EntitysRouter, GlobalRouters, ProductRouters };
+export { EntitysRouter, GlobalRouters, ProductRouters, DaeRouters };
