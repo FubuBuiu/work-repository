@@ -37,7 +37,6 @@ const PageRegister = () => {
                             ]}
                         />
                     </div>
-
                     <div className='col-span-2'>
                         <Textarea rows={4} name='observation' control={control} title='Observação' />
                     </div>

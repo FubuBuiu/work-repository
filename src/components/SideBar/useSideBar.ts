@@ -103,41 +103,41 @@ export const useSideBar = () => {
             title: 'Controle de Estoque',
             icon: FaWarehouse,
             items: [
-                { title: 'Revendedores', url: '/revendedores', icon: FaStore },
-                { title: 'Produtores', url: '/produtores', icon: FaTractor },
-                { title: 'Aplicadores', url: '/aplicadores', icon: FaSprayCan },
-                { title: 'Centrais de Descartes', url: '/centrais-de-descartes', icon: FaRecycle },
-                { title: 'Revendas', url: '/revendas-recebimento-de-estoque', icon: FaBoxesStacked }
+                { title: 'Revendedores', url: GlobalRouters.stockControl.RESELLERS.LIST, icon: FaStore },
+                { title: 'Produtores', url: GlobalRouters.stockControl.PRODUCERS.LIST, icon: FaTractor },
+                { title: 'Aplicadores', url: GlobalRouters.stockControl.APPLICATORS.LIST, icon: FaSprayCan },
+                { title: 'Centrais de Descartes', url: GlobalRouters.stockControl.DISPOSALCENTERS.LIST, icon: FaRecycle },
+                { title: 'Revendas', url: GlobalRouters.stockControl.RESALES.LIST, icon: FaBoxesStacked }
             ]
         },
         {
             title: 'Utilitários',
             icon: FaTools,
             items: [
-                { title: 'Relatório de logs', url: '/relatorio-de-logs', icon: FaFileAlt },
-                { title: 'Filtrar Importações', url: '/filtrar-importacoes', icon: FaFilter },
-                { title: 'NCM', url: '/ncm', icon: FaBarcode },
-                { title: 'Consulta CREA', url: '/consulta-crea', icon: FaSearch },
-                { title: 'Consultar NF', url: '/consultar-nf', icon: FaFileInvoice }
+                { title: 'Relatório de logs', url: GlobalRouters.utilitie.LOGREPORTS.LIST, icon: FaFileAlt },
+                { title: 'Filtrar Importações', url: GlobalRouters.utilitie.FILTERIMPORTS.LIST, icon: FaFilter },
+                { title: 'NCM', url: GlobalRouters.utilitie.NCMS.LIST, icon: FaBarcode },
+                { title: 'Consulta CREA', url: GlobalRouters.utilitie.CONSULTATIONCREAS.LIST, icon: FaSearch },
+                { title: 'Consultar NF', url: GlobalRouters.utilitie.CONSULTATIONNFS.LIST, icon: FaFileInvoice }
             ]
         },
         {
             title: 'Fiscalização',
             icon: FaClipboardCheck,
             items: [
-                { title: 'Apreensões', url: '/apreensoes', icon: FaExclamationTriangle },
-                { title: 'Fiscais', url: '/fiscais', icon: FaUserShield },
-                { title: 'Irregularidades', url: '/irregularidades', icon: FaTimesCircle },
-                { title: 'Processos', url: '/processos', icon: FaFolderOpen },
-                { title: 'Sanções', url: '/sancoes', icon: FaGavel }
+                { title: 'Apreensões', url: GlobalRouters.inspection.SEIZURES.LIST, icon: FaExclamationTriangle },
+                { title: 'Fiscais', url: GlobalRouters.inspection.INSPECTORS.LIST, icon: FaUserShield },
+                { title: 'Irregularidades', url: GlobalRouters.inspection.IRREGULARITIES.LIST, icon: FaTimesCircle },
+                { title: 'Processos', url: GlobalRouters.inspection.PROCESSES.LIST, icon: FaFolderOpen },
+                { title: 'Sanções', url: GlobalRouters.inspection.SANCTIONS.LIST, icon: FaGavel }
             ]
         },
         {
             title: 'Movimentação',
             icon: FaExchangeAlt,
             items: [
-                { title: 'Dar baixa', url: '/dar-baixa', icon: FaArrowDown },
-                { title: 'Incluir', url: '/incluir', icon: FaPlusCircle }
+                { title: 'Dar baixa', url: GlobalRouters.moviment.WRITEOFFS.LIST, icon: FaArrowDown },
+                { title: 'Incluir', url: GlobalRouters.moviment.INCLUDES.LIST, icon: FaPlusCircle }
             ]
         },
         {

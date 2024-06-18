@@ -5,6 +5,7 @@ services:
     nextjs:
         restart: always
         container_name: siagro-next-web
+        restart: always
         build:
             context: .
             dockerfile: Dockerfile
