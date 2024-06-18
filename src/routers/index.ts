@@ -1,9 +1,11 @@
+import { DaeRouters } from './DaeRouters';
 import { EntitysRouter } from './EntityRouters';
 import { ProductRouters } from './ProductRouters';
 
 const GlobalRouters = {
     entity: EntitysRouter,
-    product: ProductRouters
+    product: ProductRouters,
+    dae: DaeRouters
 };
 
-export { EntitysRouter, GlobalRouters, ProductRouters };
+export { EntitysRouter, GlobalRouters, ProductRouters, DaeRouters };

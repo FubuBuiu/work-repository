@@ -1,0 +1,36 @@
+const MAIN_PATH_PREFIX = '/dae';
+const SERVICE_CHARGES_PREFIX = '/taxa-de-servico';
+const GENERATION_OF_COLLECTION_DOCUMENTS_PREFIX = '/geracao-de-documentos-de-arrecadacao';
+
+const Routes = {
+    DASHBOARDS: { LIST: MAIN_PATH_PREFIX + '/dashboard' },
+    SERVICE_CHARGES: {
+        LIST: MAIN_PATH_PREFIX + SERVICE_CHARGES_PREFIX,
+        UPDATE: MAIN_PATH_PREFIX + SERVICE_CHARGES_PREFIX + '/atualizar',
+        REGISTER: MAIN_PATH_PREFIX + SERVICE_CHARGES_PREFIX + '/registrar'
+    },
+    GENERATION_OF_COLLECTION_DOCUMENTS: {
+        LIST: MAIN_PATH_PREFIX + GENERATION_OF_COLLECTION_DOCUMENTS_PREFIX,
+        UPDATE: MAIN_PATH_PREFIX + GENERATION_OF_COLLECTION_DOCUMENTS_PREFIX + '/atualizar',
+        REGISTER: MAIN_PATH_PREFIX + GENERATION_OF_COLLECTION_DOCUMENTS_PREFIX + '/registrar'
+    }
+} as const;
+
+enum Route {
+    DASHBOARDS = 'DASHBOARDS',
+    SERVICE_CHARGES = 'SERVICE_CHARGES',
+    GENERATION_OF_COLLECTION_DOCUMENTS = 'GENERATION_OF_COLLECTION_DOCUMENTS'
+}
+
+type EndPath = keyof (typeof Routes)[Route];
+type RoutesWithEndPaths = {
+    [key in Route]: {
+        [key in EndPath]: string;
+    };
+};
+
+export const DaeRouters: RoutesWithEndPaths = {
+    DASHBOARDS: Routes.DASHBOARDS,
+    SERVICE_CHARGES: Routes.SERVICE_CHARGES,
+    GENERATION_OF_COLLECTION_DOCUMENTS: Routes.GENERATION_OF_COLLECTION_DOCUMENTS
+};
