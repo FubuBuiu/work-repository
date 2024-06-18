@@ -1,9 +1,16 @@
-import { createElement, CSSProperties, InputHTMLAttributes, useState } from 'react';
+import { CSSProperties, InputHTMLAttributes, createElement, useState } from 'react';
 import { Control, FieldValues, useController } from 'react-hook-form';
 import { IconType } from 'react-icons';
 
-//TODO Tentar replicar propriedade size do Select para esse componente
-interface SelectListPropsType extends InputHTMLAttributes<HTMLInputElement> {
+type SelectListSizeType = 'extra-small' | 'small' | 'large';
+
+enum SelectSizeEnum {
+    'extra-small' = 'select-xs',
+    small = 'select-sm',
+    large = 'select-lg'
+}
+
+interface ISelectListProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
     control: Control<FieldValues>;
     options?: {
         value: string;
@@ -12,9 +19,10 @@ interface SelectListPropsType extends InputHTMLAttributes<HTMLInputElement> {
     errorColor?: string;
     topRightLabel?: string | IconType;
     disabled?: boolean;
+    size?: SelectListSizeType;
 }
 
-export default function SelectList({ control, name = '', options = [], title, className, color, disabled, errorColor, defaultValue = '', required, topRightLabel, ...props }: SelectListPropsType) {
+export default function SelectList({ control, name = '', options = [], title, className, color, disabled, errorColor, defaultValue = '', required, topRightLabel, size, ...props }: ISelectListProps) {
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
     const { field, fieldState } = useController({
@@ -48,7 +56,7 @@ export default function SelectList({ control, name = '', options = [], title, cl
             )}
             <input
                 list={name}
-                className={`select select-bordered w-full border-2 bg-transparent focus-within:outline-none ${disabled ? 'field-disabled' : `${defaultSelectStyle}  ${!isFocused && 'hover:border-black'}`} ${className} `}
+                className={`select ${size && SelectSizeEnum[size]} select-bordered w-full border-2 bg-transparent focus-within:outline-none ${disabled ? 'field-disabled' : `${defaultSelectStyle}  ${!isFocused && 'hover:border-black'}`} ${className} `}
                 type='text'
                 style={borderStyleWithCustomColor}
                 {...props}

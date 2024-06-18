@@ -1,11 +1,11 @@
-import { createElement, CSSProperties, SelectHTMLAttributes, useState } from 'react';
+import { CSSProperties, SelectHTMLAttributes, createElement, useState } from 'react';
 import { Control, FieldValues, useController } from 'react-hook-form';
 import { IconType } from 'react-icons';
 
-export interface ListOptionType {
+export type ListOptionType = {
     value: string;
     key: string;
-}
+};
 
 type SelectSizeType = 'extra-small' | 'small' | 'large';
 
@@ -47,16 +47,19 @@ export default function Select({
 }: SelectPropsType) {
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
-    const { field, fieldState } = useController({
+    const {
+        field,
+        fieldState: { error }
+    } = useController({
         control,
         defaultValue,
         name
     });
 
-    const defaultSelectStyle = !color && `focus-within:border-primary ${fieldState.error && !errorColor && '!border-error focus-within:!border-error'}`;
+    const defaultSelectStyle = !color && `focus-within:border-primary ${error && !errorColor && '!border-error focus-within:!border-error'}`;
 
-    const borderStyleWithCustomColor: CSSProperties = { borderColor: fieldState.error ? errorColor && errorColor : isFocused ? color : undefined };
-    const titleStyleWithCustomColor: CSSProperties = { color: fieldState.error ? errorColor && errorColor : isFocused ? color : undefined };
+    const borderStyleWithCustomColor: CSSProperties = { borderColor: error ? errorColor && errorColor : isFocused ? color : undefined };
+    const titleStyleWithCustomColor: CSSProperties = { color: error ? errorColor && errorColor : isFocused ? color : undefined };
 
     const generateLabel = (value: string | IconType) => {
         if (typeof value === 'string') {
@@ -69,7 +72,10 @@ export default function Select({
         <label className='form-control w-full ' style={{ width: width ?? undefined }} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}>
             {(outsideTitle || topRightLabel) && (
                 <div className='label'>
-                    <span className={`label-text font-medium ${disabled ? 'field-title-disabled' : `${!color && isFocused && 'text-primary'}`}`} style={color ? titleStyleWithCustomColor : undefined}>
+                    <span
+                        className={`label-text font-medium ${disabled ? 'field-title-disabled' : `${!color && isFocused && 'text-primary'} ${error && !errorColor && '!text-error'}`}`}
+                        style={titleStyleWithCustomColor}
+                    >
                         {outsideTitle}
                         {required && <span className={`ml-1 ${!disabled && 'text-red-500'}`}>*</span>}
                     </span>
@@ -92,10 +98,10 @@ export default function Select({
                     </option>
                 ))}
             </select>
-            {(fieldState.error || bottomRightLabel) && (
+            {(error || bottomRightLabel) && (
                 <div className='label'>
                     <span className={`text-xs ${!errorColor && '!text-error'}`} style={{ color: errorColor ? errorColor : undefined }}>
-                        {fieldState.error?.message}
+                        {error?.message}
                     </span>
                     <span className={`label-text-alt ${disabled && 'field-title-disabled'}`}>{bottomRightLabel && generateLabel(bottomRightLabel)}</span>
                 </div>

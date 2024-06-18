@@ -1,41 +1,26 @@
-'use client';
-import { createElement, CSSProperties, useState } from 'react';
+import { ButtonHTMLAttributes, CSSProperties, createElement, useState } from 'react';
 import { IconType } from 'react-icons';
 
 type VariantButtonType = 'icon' | 'normal';
 
 type ButtonSizesType = 'large' | 'small' | 'extra-small';
 
-export default function Button({
-    loading,
-    text,
-    className,
-    icon,
-    startIcon,
-    endIcon,
-    outline,
-    noAnimation,
-    ghost,
-    block,
-    color,
-    contentColor,
-    variant = 'normal',
-    size,
-    ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement> & {
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     loading?: boolean;
     noAnimation?: boolean;
     block?: boolean;
     ghost?: boolean;
     startIcon?: boolean;
     endIcon?: boolean;
-    icon?: { icon: IconType; size?: number | string };
+    icon?: { icon: IconType; size?: number | string; color?: string };
     outline?: boolean;
     variant?: VariantButtonType;
     size?: ButtonSizesType;
     contentColor?: string;
     text?: string;
-}) {
+}
+
+export default function Button({ loading, text, className, icon, startIcon, endIcon, outline, noAnimation, ghost, block, color, contentColor, variant = 'normal', size, ...props }: IButtonProps) {
     const [isHover, setIsHover] = useState<boolean>(false);
     let darkCustomColor: string | undefined = undefined;
 
@@ -65,7 +50,7 @@ export default function Button({
         'extra-small' = 'btn-xs'
     }
 
-    const GenericIcon = () => icon && createElement(icon.icon, { size: icon.size });
+    const GenericIcon = () => icon && createElement(icon.icon, { size: icon.size, color: icon.color });
 
     const getDarkColorFromCustomColor = (cor: string, porcentagem: number = 10): string => {
         // Extrair os componentes RGB da cor original
