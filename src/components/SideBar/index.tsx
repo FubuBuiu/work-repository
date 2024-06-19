@@ -7,6 +7,7 @@ import { FaSignOutAlt } from 'react-icons/fa';
 import onlyLogo from '../../assets/auth/logo.png';
 import imageExtend from '../../assets/auth/logoSiagro.png';
 import Button from '../basic/Button';
+import ToggleTheme from '../basic/ToggleTheme';
 import { useSideBar } from './useSideBar';
 
 const SideBar = () => {
@@ -17,7 +18,10 @@ const SideBar = () => {
             className={`flex h-screen w-14 flex-col items-center pt-8 ${collapsed ? 'min-w-16' : 'min-w-80'} transition-max-height overflow-hidden 
             rounded-e-md bg-primary text-primary-content duration-500 ease-in-out`}
         >
-            <header>
+            <header className='relative'>
+                <div className={`absolute  -right-14 -top-6`}>
+                    <ToggleTheme />
+                </div>
                 <button type='button' className='sidebar-burger' onClick={handlerCollapsed}>
                     <Image src={collapsed ? onlyLogo : imageExtend} alt='Logo' width='0' priority height='0' sizes='100vw' className={collapsed ? 'h-[43.5px] w-full' : 'h-[43.5px] w-full'} />
                     <p className='divide-y-2'></p>
