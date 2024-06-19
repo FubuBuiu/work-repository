@@ -1,7 +1,7 @@
 import type { TypedUseSelectorHook } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { changeTheme, toggleSidebar } from '@/store/session/session';
+import { changeTheme, toggleSidebar } from '@/store/session/sessionSlice';
 
 import type { AppDispatch, RootState } from '../store/store';
 
