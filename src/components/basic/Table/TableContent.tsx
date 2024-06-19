@@ -102,21 +102,11 @@ export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado en
                                     </td>
                                 ))}
                                 <td className='flex gap-2'>
-                                    {actions &&
-                                        actions.length !== 0 &&
-                                        actions.map((action, index) => (
-                                            <Tooltip message={action.tooltipText}>
-                                                <Button
-                                                    key={`action-${index}`}
-                                                    text={action.label}
-                                                    icon={action.icon}
-                                                    ghost={action.icon && true}
-                                                    variant={action.icon && 'icon'}
-                                                    onClick={action.action}
-                                                    size='small'
-                                                />
-                                            </Tooltip>
-                                        ))}
+                                    {actions?.map((action, index) => (
+                                        <Tooltip message={action.tooltipText} key={`action-${index}`}>
+                                            <Button text={action.label} icon={action.icon} ghost={action.icon && true} variant={action.icon && 'icon'} onClick={action.action} size='small' />
+                                        </Tooltip>
+                                    ))}
                                 </td>
                             </tr>
                         ))
