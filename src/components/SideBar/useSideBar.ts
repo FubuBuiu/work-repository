@@ -28,6 +28,7 @@ import {
     FaWarehouse
 } from 'react-icons/fa6';
 
+import { useSession } from '@/hooks/useSession';
 import { GlobalRouters } from '@/routers';
 
 interface IListItems {
@@ -37,10 +38,10 @@ interface IListItems {
 }
 
 export const useSideBar = () => {
-    const [collapsed, setCollapsed] = useState(false);
+    const { changeStateSidebar: setCollapsed, sidebarOpen: collapsed } = useSession();
     const [itemActive, setItemActive] = useState('');
     const handlerCollapsed = () => {
-        setCollapsed(!collapsed);
+        setCollapsed();
         setItemActive('');
     };
 

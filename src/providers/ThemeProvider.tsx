@@ -1,23 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+
+import { useSession } from '@/hooks/useSession';
 
 const ThemeContext = React.createContext({ theme: 'light', switchTheme: () => {} });
 
 const ThemeProvider = ({ children }: any) => {
-    const [theme, setTheme] = useState('light');
+    const { changeThemeState, theme } = useSession();
+    const changeToDark = () => {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.classList.add('dark');
+    };
+
+    const changeToLight = () => {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.classList.remove('dark');
+    };
+
+    useEffect(() => {
+        if (theme === 'dark') {
+            changeToDark();
+        } else {
+            changeToLight();
+        }
+    }, []);
 
     const switchTheme = () => {
         if (theme === 'light') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.documentElement.classList.add('dark');
-            setTheme('dark');
+            changeToDark();
+            changeThemeState('dark');
         } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            document.documentElement.classList.remove('dark');
-            setTheme('light');
+            changeToLight();
+            changeThemeState('light');
         }
     };
 
-    return <ThemeContext.Provider value={{ theme, switchTheme: switchTheme }}>{children}</ThemeContext.Provider>;
+    return <ThemeContext.Provider value={{ theme, switchTheme }}>{children}</ThemeContext.Provider>;
 };
 
 function useTheme() {
