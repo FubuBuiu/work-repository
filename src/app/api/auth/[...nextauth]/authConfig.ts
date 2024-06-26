@@ -10,18 +10,21 @@ export const nextAuthOptions: NextAuthOptions = {
                 password: { label: 'Senha', type: 'password' }
             },
             async authorize(credentials) {
-                const response = await fetch(process.env.NEXTAUTH_URL ?? '', {
-                    method: 'POST',
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        login: credentials?.login,
-                        senha: credentials?.password
-                    })
-                });
+                // const response = await fetch(process.env.NEXTAUTH_URL ?? '', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-type': 'application/json'
+                //     },
+                //     body: JSON.stringify({
+                //         login: credentials?.login,
+                //         senha: credentials?.password
+                //     })
+                // });
 
-                const user = await response.json();
+                // const user = await response.json();
+
+                const user = {};
+                const response = { ok: ' ' };
 
                 if (user && response.ok) {
                     return user;

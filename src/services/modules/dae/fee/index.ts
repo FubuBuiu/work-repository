@@ -3,9 +3,9 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { GetRequestType, ResponseDTO } from '../../model/dae/fee/GetAllFeeModel';
 import { getAllFee } from './getAllFee';
 
-export function getAllFeeQuery(request: GetRequestType) {
+export default function getAllFeeQuery(request: GetRequestType) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { data, refetch } = useQuery({
+    return useQuery({
         queryKey: ['getAllFee', request.page, request.limit],
         queryFn: async (): Promise<ResponseDTO> => await getAllFee(request),
         //TODO Ver se é necessário esses parâmetros
@@ -14,6 +14,4 @@ export function getAllFeeQuery(request: GetRequestType) {
         retry: 1,
         retryDelay: 1000
     });
-
-    return { response: data as ResponseDTO, refetch };
 }

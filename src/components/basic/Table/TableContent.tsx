@@ -97,11 +97,14 @@ export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado en
                         list.map((item, index) => (
                             <tr key={index}>
                                 {enumaratedRows && <th>{index + 1}</th>}
-                                {header.map(column => (
-                                    <td key={`${column.key}-${index}`}>
-                                        <div className='w-fit'>{item[column.key]}</div>
-                                    </td>
-                                ))}
+                                {header.map(
+                                    column =>
+                                        item[column.key] && (
+                                            <td key={`${column.key}-${index}`}>
+                                                <div className='w-fit'>{item[column.key]}</div>
+                                            </td>
+                                        )
+                                )}
                                 <td className='flex gap-2'>
                                     {actions?.map((action, index) => (
                                         <Tooltip message={action.tooltipText} key={`action-${index}`}>

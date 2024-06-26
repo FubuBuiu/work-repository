@@ -28,24 +28,24 @@ export type DataType = {
     idDAETax: string;
     revenueCode: string;
     levelOne: {
-        code: 'codigo';
-        description: 'descricao';
+        code: string;
+        description: string;
     };
-    levelTwo?: {
-        code: 'codigo';
-        description?: 'descricao';
+    levelTwo: {
+        code: string;
+        description: string;
     };
-    levelThree?: {
-        code: 'codigo';
-        description?: 'descricao';
+    levelThree: {
+        code: string;
+        description: string;
     };
-    levelFour?: {
-        code: 'codigo';
-        description?: 'descricao';
+    levelFour: {
+        code: string;
+        description: string;
     };
-    levelFive?: {
-        code: 'codigo';
-        description?: 'descricao';
+    levelFive: {
+        code: string;
+        description: string;
     };
 };
 

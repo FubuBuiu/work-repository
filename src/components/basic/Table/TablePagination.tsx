@@ -19,9 +19,10 @@ const listPerPageOptions: ListOptionType[] = [
 ];
 
 export function TablePagination({ nextPage, prevPage, currentPage, totalItems, changeItemsPerPage }: TablePaginationProps) {
-    const { control } = useForm();
-    const totalPages = 2;
-    // const totalPages = totalItems/
+    const { control, watch } = useForm();
+    const itemsPerPage: string = watch('itemsPerPage', 10);
+    // const totalPages = 2;
+    const totalPages = Math.ceil(totalItems / parseInt(itemsPerPage));
 
     return (
         <div className='flex h-[100px] items-end justify-end gap-10 p-2'>

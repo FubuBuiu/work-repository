@@ -21,24 +21,24 @@ export type Fee = {
     isByDocumentAndQuantity: false;
     revenueGroup: string;
     levelOne: {
-        code: 'codigo';
-        description: 'descricao';
+        code: string;
+        description: string;
     };
     levelTwo: {
-        code: 'codigo';
-        description: 'descricao';
+        code: string;
+        description: string;
     };
     levelThree: {
-        code: 'codigo';
-        description: 'descricao';
+        code: string;
+        description: string;
     };
     levelFour: {
-        code: 'codigo';
-        description: 'descricao';
+        code: string;
+        description: string;
     };
     levelFive: {
-        code: 'codigo';
-        description: 'descricao';
+        code: string;
+        description: string;
     };
-    observation: 'observacao';
+    observation: string;
 };
