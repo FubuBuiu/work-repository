@@ -1,11 +1,3 @@
-export type FeeType = 'POLICE_POWER_FEE' | 'EXECUTIVE_SERVICE_FEE' | 'PENALTIES';
-
-export enum FeeTypeEnum {
-    POLICE_POWER_FEE = 'Taxa pelo poder de polícia',
-    EXECUTIVE_SERVICE_FEE = 'Taxas pela prestação do serviço na área do poder executivo',
-    PENALTIES = 'Multas'
-}
-
 export type UnitOfMeasurementType = 'DOCUMENTO' | 'PRODUTO';
 
 export type RevenueGroupType =
@@ -19,7 +11,8 @@ export type RevenueGroupType =
     | 'PRODUCT_CHANGER'
     | 'PRODUCT_MAINTENANCE';
 
-export type Fee = {
+export type DataApi = {
+    idDAETax: string;
     revenueCode: string;
     description: string;
     isPerQuantity: boolean;
@@ -29,6 +22,12 @@ export type Fee = {
     observation?: string;
     active: boolean;
     createdAt: Date;
-    updatedAt: Date;
-    deletedAt: Date;
+    updatedAt?: Date;
+    deletedAt?: Date;
+};
+export type GetByIdResponse = {
+    data: {
+        message: string;
+        data: DataApi[];
+    };
 };

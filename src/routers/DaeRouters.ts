@@ -6,7 +6,7 @@ const Routes = {
     DASHBOARDS: { LIST: MAIN_PATH_PREFIX + '/dashboard', UPDATE: '', REGISTER: '' },
     SERVICE_CHARGES: {
         LIST: MAIN_PATH_PREFIX + SERVICE_CHARGES_PREFIX,
-        UPDATE: MAIN_PATH_PREFIX + SERVICE_CHARGES_PREFIX + '/atualizar',
+        UPDATE: (id: string) => MAIN_PATH_PREFIX + SERVICE_CHARGES_PREFIX + '/atualizar/' + id,
         REGISTER: MAIN_PATH_PREFIX + SERVICE_CHARGES_PREFIX + '/cadastro'
     },
     GENERATION_OF_COLLECTION_DOCUMENTS: {
@@ -25,7 +25,7 @@ enum Route {
 type EndPath = keyof (typeof Routes)[Route];
 type RoutesWithEndPaths = {
     [key in Route]: {
-        [key in EndPath]: string;
+        [key in EndPath]: any;
     };
 };
 
