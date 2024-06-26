@@ -4,7 +4,7 @@ import { IconType } from 'react-icons';
 
 export type ListOptionType = {
     value: string;
-    key: string;
+    label: string;
 };
 
 type SelectSizeType = 'extra-small' | 'small' | 'large';
@@ -93,8 +93,8 @@ export default function Select({
                     {insideTitle ?? 'Selecione'}
                 </option>
                 {options.map(option => (
-                    <option key={option.key} value={option.value}>
-                        {option.value}
+                    <option key={option.value} value={option.value}>
+                        {option.label}
                     </option>
                 ))}
             </select>
