@@ -2,7 +2,7 @@
 
 import { handlerError } from '@/helper/handlerError';
 import { useLoading } from '@/hooks/useLoading';
-import { baseAPI } from '@/services/services';
+import { baseAPI } from '@/services';
 
 const AxiosProvider = ({ children }: { children: React.ReactNode }) => {
     const { changeLoadingState } = useLoading();

@@ -1,7 +1,8 @@
 import { TableHTMLAttributes, useState } from 'react';
-import Button from '../Button';
 import { IconType } from 'react-icons';
 import { FaArrowDownLong, FaArrowUpLong } from 'react-icons/fa6';
+
+import Button from '../Button';
 import Tooltip from '../Tooltip';
 
 export type HeaderTable = {

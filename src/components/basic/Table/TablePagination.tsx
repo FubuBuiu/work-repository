@@ -9,7 +9,7 @@ interface TablePaginationProps {
     prevPage: () => void;
     changeItemsPerPage: (numberOfItems: number) => void;
     currentPage: number;
-    totalPages: number;
+    totalItems: number;
 }
 
 const listPerPageOptions: ListOptionType[] = [
@@ -18,14 +18,23 @@ const listPerPageOptions: ListOptionType[] = [
     { value: '30', key: '30' }
 ];
 
-export function TablePagination({ nextPage, prevPage, currentPage, totalPages, changeItemsPerPage }: TablePaginationProps) {
+export function TablePagination({ nextPage, prevPage, currentPage, totalItems, changeItemsPerPage }: TablePaginationProps) {
     const { control } = useForm();
+    const totalPages = 2;
+    // const totalPages = totalItems/
 
     return (
         <div className='flex h-[100px] items-end justify-end gap-10 p-2'>
             <div className=' flex w-fit items-center gap-3'>
                 <span className='font-medium'>Linhas por página:</span>
-                <Select width='fit-content' control={control} options={listPerPageOptions} defaultValue={'10'} onChange={event => changeItemsPerPage(parseInt(event.target.value))} />
+                <Select
+                    width='fit-content'
+                    control={control}
+                    name='itemsPerPage'
+                    options={listPerPageOptions}
+                    defaultValue={'10'}
+                    onChange={event => changeItemsPerPage(parseInt(event.target.value))}
+                />
             </div>
             <div className='join h-fit'>
                 <Button className='join-item shadow-none' disabled={currentPage === 1} onClick={prevPage} noAnimation variant='icon' icon={{ icon: MdKeyboardDoubleArrowLeft }} />

@@ -1,11 +1,12 @@
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as zod from 'zod';
+
 import Button from '@/components/basic/Button';
 import { Card } from '@/components/basic/Card';
 import RadioGroup from '@/components/basic/Radio';
 import Select from '@/components/basic/Select';
 import TextField from '@/components/basic/TextField';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import * as zod from 'zod';
 
 type FormType = 'register' | 'update';
 export default function AddOrUpdateForm({ formType }: { formType: FormType }) {
@@ -15,14 +16,14 @@ export default function AddOrUpdateForm({ formType }: { formType: FormType }) {
         levelDescription1: zod.string().min(1, { message: 'Informe a descrição nível 1.' }),
         feeType: zod.string().min(1, { message: 'Informe o tipo da taxa.' }),
         feeUsedToIssueGTA: zod.string().refine(value => value === 'true', { message: 'Informe o tipo da taxa' }),
-        byLanes: zod.string().min(1, { message: 'Campo obrigatório.' }),
+        isByLanes: zod.string().min(1, { message: 'Campo obrigatório.' }),
         isIndexed: zod.string().refine(value => value === 'true', { message: 'Campo obrigatório.' }),
         indexer: zod.string().min(1, { message: 'Informe o indexador.' }),
         indexerQuantity: zod.string().min(1, { message: 'Informe a quantidade.' }),
         isContributorAgriculturalFund: zod.string().refine(value => value === 'true', { message: 'Campo obrigatório.' }),
-        isPerDocument: zod.string().refine(value => value === 'true', { message: 'Campo obrigatório.' }),
+        isByDocument: zod.string().refine(value => value === 'true', { message: 'Campo obrigatório.' }),
         unitOfMeasurement: zod.string().min(1, { message: 'Informe a unidade de medida.' }),
-        isPerDocumentAndQuantity: zod.string().refine(value => value === 'true', { message: 'Campo obrigatório.' }),
+        isByDocumentAndQuantity: zod.string().refine(value => value === 'true', { message: 'Campo obrigatório.' }),
         revenueGroup: zod.string().min(1, { message: 'Informe o grupo de receita.' })
     });
     const feeTypeRadioOptions = [
@@ -66,7 +67,7 @@ export default function AddOrUpdateForm({ formType }: { formType: FormType }) {
                         <RadioGroup control={control} name='feeType' required options={feeTypeRadioOptions} title='Tipo' />
                     </div>
                     <RadioGroup control={control} name='feeUsedToIssueGTA' title='Taxa usada para emissão de GTA' required options={defaultRadioOptions} />
-                    <RadioGroup control={control} name='byLanes' title='Por faixa' required options={defaultRadioOptions} />
+                    <RadioGroup control={control} name='isByLanes' title='Por faixa' required options={defaultRadioOptions} />
                     <div className='col-span-full grid grid-cols-4 gap-3'>
                         <RadioGroup control={control} name='isIndexed' required title='Indexado?' options={defaultRadioOptions} />
                         <TextField control={control} name='indexer' size='small' outsideTitle='Indexador' />
@@ -76,9 +77,9 @@ export default function AddOrUpdateForm({ formType }: { formType: FormType }) {
                     <div className='col-span-full'>
                         <RadioGroup control={control} name='isContributorAgriculturalFund' required title='Contribui com o fundo agropecuário?' options={defaultRadioOptions} />
                     </div>
-                    <RadioGroup control={control} name='isPerDocument' required title='Por documento?' options={defaultRadioOptions} />
+                    <RadioGroup control={control} name='isByDocument' required title='Por documento?' options={defaultRadioOptions} />
                     <Select control={control} name='unitOfMeasurement' size='small' outsideTitle='Unidade de medida' />
-                    <RadioGroup control={control} name='isPerDocumentAndQuantity' required title='Por documento e quantidade' options={defaultRadioOptions} />
+                    <RadioGroup control={control} name='isByDocumentAndQuantity' required title='Por documento e quantidade' options={defaultRadioOptions} />
                     <Select control={control} name='revenueGroup' required size='small' outsideTitle='Grupo Receita' />
                 </Card.Body>
                 <Card.Actions>
