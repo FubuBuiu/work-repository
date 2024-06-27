@@ -28,6 +28,12 @@ export default function AddOrUpdateForm({ formData }: { formData?: GetByIdDTORes
         revenueGroup: zod.string().min(1, { message: 'Informe o grupo de receita.' })
     });
     const { control, handleSubmit, reset } = useForm({ resolver: zodResolver(scheme) });
+    //akndosdjasb
+    const feeTypeRadioOptions = [
+        { label: 'Taxa pelo poder de polícia', value: 'policePowerFee' },
+        { label: 'Taxas pela prestação do serviço na área do poder executivo', value: 'executiveServiceFee' },
+        { label: 'Multas', value: 'penalties' }
+    ];
     const defaultRadioOptions = [
         { label: 'Sim', value: 'true' },
         { label: 'Não', value: 'false' }
