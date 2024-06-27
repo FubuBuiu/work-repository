@@ -1,3 +1,5 @@
+import { IconType } from 'react-icons';
+
 export type SearchType = {
     attribute: string;
     operator?: 'contains' | 'startsWith' | 'endsWith' | 'equals';
@@ -14,7 +16,7 @@ export type OrderByType = {
     order?: 'asc' | 'desc';
 };
 
-export type GetRequestType = {
+export type GetAllFeeRequest = {
     limit?: number;
     page?: number;
     search?: SearchType[];
@@ -24,46 +26,58 @@ export type GetRequestType = {
     select?: string[];
 };
 
-export type DataType = {
+export type UnitOfMeasurementType = 'DOCUMENTO' | 'PRODUTO';
+
+export type RevenueGroupType =
+    | 'ESTABLISHMENT_REGISTER'
+    | 'CHANGE_OF_ESTABLISHMENT'
+    | 'ESTABLISHMENT_RENOVATION'
+    | 'PROVIDER_REGISTER'
+    | 'PROVIDER_RENEWAL'
+    | 'CHANGE_OF_PROVIDER'
+    | 'PRODUCT_REGISTER'
+    | 'PRODUCT_CHANGER'
+    | 'PRODUCT_MAINTENANCE';
+
+export type DataApi = {
     idDAETax: string;
     revenueCode: string;
-    levelOne: {
-        code: string;
-        description: string;
+    description: string;
+    isPerQuantity: boolean;
+    indexerQuantity: number;
+    unitOfMeasurement: UnitOfMeasurementType;
+    revenueGroup: RevenueGroupType;
+    observation?: string;
+    active?: boolean;
+    createdAt: Date;
+    updatedAt?: Date;
+    deletedAt?: Date;
+};
+
+export type GetAllApiResponse = {
+    data: {
+        message: string;
+        data: DataApi[];
+        totalCount: number;
     };
-    levelTwo: {
-        code: string;
-        description: string;
-    };
-    levelThree: {
-        code: string;
-        description: string;
-    };
-    levelFour: {
-        code: string;
-        description: string;
-    };
-    levelFive: {
-        code: string;
-        description: string;
-    };
+};
+
+export type Action = {
+    label?: string;
+    toolTipText?: string;
+    icon?: { icon: IconType; size?: number | string; color?: string };
+    action: { goTo?: string; doIt?: () => void };
 };
 
 export type Fee = {
     id: string;
     revenueCode: string;
+    indexerQuantity: number;
     description?: string;
+    actions?: Action[];
 };
 
-export type ResponseDTO = {
+export type GetAllDTOResponse = {
     feeList: Fee[];
     total: number;
-};
-
-export type ResponseApiType = {
-    data: {
-        message: string;
-        data: DataType[];
-        totalCount: number;
-    };
 };

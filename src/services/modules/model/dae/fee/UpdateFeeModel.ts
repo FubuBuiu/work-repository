@@ -11,17 +11,18 @@ export type RevenueGroupType =
     | 'PRODUCT_CHANGER'
     | 'PRODUCT_MAINTENANCE';
 
-export type CreateApiRequest = {
+export type UpdateApiRequest = {
     revenueCode: string;
     description: string;
-    isPerQuantity: boolean;
     indexerQuantity: number;
+    isPerQuantity: boolean;
     unitOfMeasurement: UnitOfMeasurementType;
     revenueGroup: RevenueGroupType;
     observation?: string;
+    active?: boolean;
 };
 
-export type CreateRequest = Omit<CreateApiRequest, 'indexerQuantity' | 'isPerQuantity'> & {
+export type UpdateRequest = Omit<UpdateApiRequest, 'indexerQuantity' | 'isPerQuantity'> & {
     id: string;
     indexerQuantity: string;
     isPerQuantity: string;

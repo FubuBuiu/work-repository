@@ -11,7 +11,8 @@ export type RevenueGroupType =
     | 'PRODUCT_CHANGER'
     | 'PRODUCT_MAINTENANCE';
 
-export type CreateApiRequest = {
+export type DataApi = {
+    idDAETax: string;
     revenueCode: string;
     description: string;
     isPerQuantity: boolean;
@@ -19,10 +20,20 @@ export type CreateApiRequest = {
     unitOfMeasurement: UnitOfMeasurementType;
     revenueGroup: RevenueGroupType;
     observation?: string;
+    active?: boolean;
+    createdAt: Date;
+    updatedAt?: Date;
+    deletedAt?: Date;
+};
+export type GetByIdApiResponse = {
+    data: {
+        message: string;
+        data: DataApi;
+    };
 };
 
-export type CreateRequest = Omit<CreateApiRequest, 'indexerQuantity' | 'isPerQuantity'> & {
-    id: string;
-    indexerQuantity: string;
-    isPerQuantity: string;
+type IsPerQuantityType = 'true' | 'false';
+
+export type GetByIdDTOResponse = Omit<DataApi, 'isPerQuantity'> & {
+    isPerQuantity: IsPerQuantityType;
 };

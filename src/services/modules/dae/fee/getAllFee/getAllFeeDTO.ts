@@ -1,21 +1,30 @@
-import { Fee, ResponseApiType, ResponseDTO } from '@/services/modules/model/dae/fee/GetAllFeeModel';
+import { FaPencil, FaRegTrashCan } from 'react-icons/fa6';
 
-export function getAllFeeDTO(responseApi: ResponseApiType): ResponseDTO {
+import { DaeRouters } from '@/routers';
+import { Fee, GetAllApiResponse, GetAllDTOResponse } from '@/services/modules/model/dae/fee/GetAllFeeModel';
+
+export function getAllFeeDTO(responseApi: GetAllApiResponse): GetAllDTOResponse {
     const feeList: Fee[] = responseApi.data.data.map(fee => {
-        const description =
-            fee.levelOne.description +
-            (fee.levelTwo ? ` ${fee.levelTwo.description}` : '') +
-            (fee.levelThree ? ` ${fee.levelThree.description}` : '') +
-            (fee.levelFour ? ` ${fee.levelFour.description}` : '') +
-            (fee.levelFive ? ` ${fee.levelFive.description}` : '');
-
         return {
             id: fee.idDAETax,
             revenueCode: fee.revenueCode,
-            description
+            indexerQuantity: fee.indexerQuantity,
+            description: fee.description,
+            actions: [
+                {
+                    icon: { icon: FaRegTrashCan },
+                    toolTipText: 'Deletar taxa',
+                    action: { doIt: () => alert('Deletar taxa') }
+                },
+                {
+                    icon: { icon: FaPencil },
+                    action: { goTo: DaeRouters.SERVICE_CHARGES.UPDATE(fee.idDAETax) },
+                    toolTipText: 'Editar taxa'
+                }
+            ]
         };
     });
-    const response: ResponseDTO = {
+    const response: GetAllDTOResponse = {
         feeList,
         total: responseApi.data.totalCount
     };

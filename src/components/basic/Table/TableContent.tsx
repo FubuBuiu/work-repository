@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation';
 import { TableHTMLAttributes, useState } from 'react';
 import { IconType } from 'react-icons';
 import { FaArrowDownLong, FaArrowUpLong } from 'react-icons/fa6';
@@ -14,9 +15,9 @@ type orderType = 'normal' | 'crescent' | 'decrescent';
 
 export type Action = {
     label?: string;
-    tooltipText?: string;
+    toolTipText?: string;
     icon?: { icon: IconType; size?: number | string; color?: string };
-    action: (value?: any) => void;
+    action: { goTo?: string; doIt?: () => void };
 };
 
 interface ITableProps extends TableHTMLAttributes<HTMLTableElement> {
@@ -24,14 +25,14 @@ interface ITableProps extends TableHTMLAttributes<HTMLTableElement> {
     data?: Array<any>;
     enumaratedRows?: boolean;
     emptyMessage?: string;
-    actions?: Action[];
 }
 
-export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado encontrado', enumaratedRows, actions, ...props }: ITableProps) {
+export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado encontrado', enumaratedRows, ...props }: ITableProps) {
     const [list, setList] = useState(data);
     const [orderColumn, setOrderColumn] = useState<string | undefined>(undefined);
     const [order, setOrder] = useState<orderType>('normal');
     const [hoveredColumn, setHoveredColumn] = useState<string | undefined>(undefined);
+    const router = useRouter();
 
     const handleOrdenation = (column: string): void => {
         if (data.length !== 0) {
@@ -66,6 +67,15 @@ export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado en
                 setOrderColumn(undefined);
                 setOrder('normal');
             }
+        }
+    };
+
+    //TODO Tipar melhor o parâmetro da função depois
+    const handleActionColumn = ({ doIt, goTo }: { goTo?: string; doIt?: () => void }): void => {
+        if (doIt) {
+            doIt();
+        } else if (goTo) {
+            router.push(goTo);
         }
     };
 
@@ -105,13 +115,22 @@ export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado en
                                             </td>
                                         )
                                 )}
-                                <td className='flex gap-2'>
-                                    {actions?.map((action, index) => (
-                                        <Tooltip message={action.tooltipText} key={`action-${index}`}>
-                                            <Button text={action.label} icon={action.icon} ghost={action.icon && true} variant={action.icon && 'icon'} onClick={action.action} size='small' />
-                                        </Tooltip>
-                                    ))}
-                                </td>
+                                {item['actions'] && (
+                                    <td className='flex gap-2'>
+                                        {(item['actions'] as Action[])?.map((action, index) => (
+                                            <Tooltip message={action.toolTipText} key={`action-${index}`}>
+                                                <Button
+                                                    text={action.label}
+                                                    icon={action.icon}
+                                                    ghost={action.icon && true}
+                                                    variant={action.icon && 'icon'}
+                                                    onClick={() => handleActionColumn(action.action)}
+                                                    size='small'
+                                                />
+                                            </Tooltip>
+                                        ))}
+                                    </td>
+                                )}
                             </tr>
                         ))
                     ) : (
