@@ -1,4 +1,3 @@
-import { useRouter } from 'next/navigation';
 import { TableHTMLAttributes, useState } from 'react';
 import { IconType } from 'react-icons';
 import { FaArrowDownLong, FaArrowUpLong } from 'react-icons/fa6';
@@ -13,26 +12,43 @@ export type HeaderTable = {
 
 type orderType = 'normal' | 'crescent' | 'decrescent';
 
-export type Action = {
+// type ActionType = 'DO_IT' | 'GO_TO';
+
+// enum ActionEnum {
+//     DO_IT = 'doIt',
+//     GO_TO = 'goTo'
+// }
+
+type Action = {
     label?: string;
     toolTipText?: string;
     icon?: { icon: IconType; size?: number | string; color?: string };
-    action: { goTo?: string; doIt?: () => void };
+    action: string;
+    auxValues?: { [key: string]: any };
+};
+
+type TableData = {
+    [key: string]: any;
+    actions?: Action[];
+};
+
+export type Actions = {
+    [key: string]: (value?: any) => void;
 };
 
 interface ITableProps extends TableHTMLAttributes<HTMLTableElement> {
     header: HeaderTable[];
-    data?: Array<any>;
+    data?: TableData[];
     enumaratedRows?: boolean;
     emptyMessage?: string;
+    actions?: Actions;
 }
 
-export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado encontrado', enumaratedRows, ...props }: ITableProps) {
+export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado encontrado', enumaratedRows, actions, ...props }: ITableProps) {
     const [list, setList] = useState(data);
     const [orderColumn, setOrderColumn] = useState<string | undefined>(undefined);
     const [order, setOrder] = useState<orderType>('normal');
     const [hoveredColumn, setHoveredColumn] = useState<string | undefined>(undefined);
-    const router = useRouter();
 
     const handleOrdenation = (column: string): void => {
         if (data.length !== 0) {
@@ -71,13 +87,13 @@ export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado en
     };
 
     //TODO Tipar melhor o parâmetro da função depois
-    const handleActionColumn = ({ doIt, goTo }: { goTo?: string; doIt?: () => void }): void => {
-        if (doIt) {
-            doIt();
-        } else if (goTo) {
-            router.push(goTo);
-        }
-    };
+    // const handleActionColumn = ({ doIt, goTo }: { goTo?: string; doIt?: () => void }): void => {
+    //     if (doIt) {
+    //         doIt();
+    //     } else if (goTo) {
+    //         router.push(goTo);
+    //     }
+    // };
 
     return (
         <div className='overflow-auto'>
@@ -115,20 +131,23 @@ export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado en
                                             </td>
                                         )
                                 )}
-                                {item['actions'] && (
+                                {item['actions'] && actions && (
                                     <td className='flex gap-2'>
-                                        {(item['actions'] as Action[])?.map((action, index) => (
-                                            <Tooltip message={action.toolTipText} key={`action-${index}`}>
-                                                <Button
-                                                    text={action.label}
-                                                    icon={action.icon}
-                                                    ghost={action.icon && true}
-                                                    variant={action.icon && 'icon'}
-                                                    onClick={() => handleActionColumn(action.action)}
-                                                    size='small'
-                                                />
-                                            </Tooltip>
-                                        ))}
+                                        {(item['actions'] as Action[])?.map(
+                                            (action, index) =>
+                                                actions[action.action] && (
+                                                    <Tooltip message={action.toolTipText} key={`action-${index}`}>
+                                                        <Button
+                                                            text={action.label}
+                                                            icon={action.icon}
+                                                            ghost={action.icon && true}
+                                                            variant={action.icon && 'icon'}
+                                                            onClick={() => actions[action.action](action.auxValues?.id)}
+                                                            size='small'
+                                                        />
+                                                    </Tooltip>
+                                                )
+                                        )}
                                     </td>
                                 )}
                             </tr>

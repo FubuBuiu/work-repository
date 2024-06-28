@@ -1,7 +1,7 @@
 import { setTimeout } from 'timers';
 
 import { baseAPI } from '@/services';
-import { DataApi, GetAllFeeApiResponse, GetAllFeeDTOResponse, GetAllFeeRequest } from '@/services/modules/model/dae/fee/GetAllFeeModel';
+import { DataApi, GetAllApiResponse, GetAllDTOResponse, GetAllFeeRequest } from '@/services/modules/model/dae/fee/GetAllFeeModel';
 
 import { getAllFeeDTO } from './getAllFeeDTO';
 
@@ -46,14 +46,14 @@ const mockData: DataApi[] = [
         updatedAt: new Date('2023-06-25T09:30:00Z')
     }
 ];
-export async function getAllFee(request: GetAllFeeRequest): Promise<GetAllFeeDTOResponse> {
+export async function getAllFee(request: GetAllFeeRequest): Promise<GetAllDTOResponse> {
     try {
-        const responseApi = await new Promise<GetAllFeeApiResponse>((resolve, reject) => {
+        const responseApi = await new Promise<GetAllApiResponse>((resolve, reject) => {
             return setTimeout(() => {
                 resolve({ data: { data: mockData, message: 'MENSAGEM', totalCount: 3 } });
             }, 5000);
         });
-        // const responseApi: GetAllFeeApiResponse = await baseAPI.post('DAETax/getAll', request);
+        // const responseApi: GetAllApiResponse = await baseAPI.post('DAETax/getAll', request);
         const response = getAllFeeDTO(responseApi);
         return response;
     } catch (error: any) {

@@ -1,6 +1,5 @@
 import { FaPencil, FaRegTrashCan } from 'react-icons/fa6';
 
-import { DaeRouters } from '@/routers';
 import { Fee, GetAllApiResponse, GetAllDTOResponse } from '@/services/modules/model/dae/fee/GetAllFeeModel';
 
 export function getAllFeeDTO(responseApi: GetAllApiResponse): GetAllDTOResponse {
@@ -14,12 +13,14 @@ export function getAllFeeDTO(responseApi: GetAllApiResponse): GetAllDTOResponse 
                 {
                     icon: { icon: FaRegTrashCan },
                     toolTipText: 'Deletar taxa',
-                    action: { doIt: () => alert('Deletar taxa') }
+                    action: 'delete',
+                    auxValues: { id: fee.idDAETax }
                 },
                 {
                     icon: { icon: FaPencil },
-                    action: { goTo: DaeRouters.SERVICE_CHARGES.UPDATE(fee.idDAETax) },
-                    toolTipText: 'Editar taxa'
+                    action: 'goToUpdateForm',
+                    toolTipText: 'Editar taxa',
+                    auxValues: { id: fee.idDAETax }
                 }
             ]
         };
@@ -28,5 +29,6 @@ export function getAllFeeDTO(responseApi: GetAllApiResponse): GetAllDTOResponse 
         feeList,
         total: responseApi.data.totalCount
     };
+    console.log('RESPONSE DTO', response);
     return response;
 }
