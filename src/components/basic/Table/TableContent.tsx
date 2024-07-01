@@ -12,19 +12,12 @@ export type HeaderTable = {
 
 type orderType = 'normal' | 'crescent' | 'decrescent';
 
-// type ActionType = 'DO_IT' | 'GO_TO';
-
-// enum ActionEnum {
-//     DO_IT = 'doIt',
-//     GO_TO = 'goTo'
-// }
-
 type Action = {
     label?: string;
     toolTipText?: string;
     icon?: { icon: IconType; size?: number | string; color?: string };
-    action: string;
-    auxValues?: { [key: string]: any };
+    actionName: string;
+    auxValue?: any;
 };
 
 type TableData = {
@@ -86,15 +79,6 @@ export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado en
         }
     };
 
-    //TODO Tipar melhor o parâmetro da função depois
-    // const handleActionColumn = ({ doIt, goTo }: { goTo?: string; doIt?: () => void }): void => {
-    //     if (doIt) {
-    //         doIt();
-    //     } else if (goTo) {
-    //         router.push(goTo);
-    //     }
-    // };
-
     return (
         <div className='overflow-auto'>
             <table className='table rounded-none bg-primary' {...props}>
@@ -135,14 +119,14 @@ export function TableContent({ header, data = [], emptyMessage = 'Nenhum dado en
                                     <td className='flex gap-2'>
                                         {(item['actions'] as Action[])?.map(
                                             (action, index) =>
-                                                actions[action.action] && (
+                                                actions[action.actionName] && (
                                                     <Tooltip message={action.toolTipText} key={`action-${index}`}>
                                                         <Button
                                                             text={action.label}
                                                             icon={action.icon}
                                                             ghost={action.icon && true}
                                                             variant={action.icon && 'icon'}
-                                                            onClick={() => actions[action.action](action.auxValues?.id)}
+                                                            onClick={() => actions[action.actionName](action.auxValue)}
                                                             size='small'
                                                         />
                                                     </Tooltip>

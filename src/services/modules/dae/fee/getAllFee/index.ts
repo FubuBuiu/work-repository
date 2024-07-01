@@ -48,12 +48,12 @@ const mockData: DataApi[] = [
 ];
 export async function getAllFee(request: GetAllFeeRequest): Promise<GetAllDTOResponse> {
     try {
-        const responseApi = await new Promise<GetAllApiResponse>((resolve, reject) => {
-            return setTimeout(() => {
-                resolve({ data: { data: mockData, message: 'MENSAGEM', totalCount: 3 } });
-            }, 5000);
-        });
-        // const responseApi: GetAllApiResponse = await baseAPI.post('DAETax/getAll', request);
+        // const responseApi = await new Promise<GetAllApiResponse>((resolve, reject) => {
+        //     return setTimeout(() => {
+        //         resolve({ data: { data: mockData, message: 'MENSAGEM', totalCount: 3 } });
+        //     }, 5000);
+        // });
+        const responseApi: GetAllApiResponse = await baseAPI.post('DAETax/getAll', request);
         const response = getAllFeeDTO(responseApi);
         return response;
     } catch (error: any) {

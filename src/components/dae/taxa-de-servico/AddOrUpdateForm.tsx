@@ -18,7 +18,6 @@ import { GetByIdDTOResponse } from '@/services/modules/model/dae/fee/GetFeeByIdM
 
 export default function AddOrUpdateForm({ formData }: { formData?: GetByIdDTOResponse }) {
     const router = useRouter();
-    // const { id } = useParams();
     const scheme = zod.object({
         revenueCode: zod.string()['min'](1, { message: 'Informe o código da receita.' }),
         description: zod.string().min(1, { message: 'Informe a descrição.' }),
@@ -82,7 +81,8 @@ export default function AddOrUpdateForm({ formData }: { formData?: GetByIdDTORes
 
     useLayoutEffect(() => {
         reset(formData);
-    });
+        console.log(formData);
+    }, []);
 
     return (
         <div className='form-control'>

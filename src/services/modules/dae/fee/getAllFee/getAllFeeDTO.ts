@@ -13,14 +13,14 @@ export function getAllFeeDTO(responseApi: GetAllApiResponse): GetAllDTOResponse 
                 {
                     icon: { icon: FaRegTrashCan },
                     toolTipText: 'Deletar taxa',
-                    action: 'delete',
-                    auxValues: { id: fee.idDAETax }
+                    actionName: 'delete',
+                    auxValue: fee.idDAETax
                 },
                 {
                     icon: { icon: FaPencil },
-                    action: 'goToUpdateForm',
+                    actionName: 'goToUpdateForm',
                     toolTipText: 'Editar taxa',
-                    auxValues: { id: fee.idDAETax }
+                    auxValue: fee.idDAETax
                 }
             ]
         };
@@ -29,6 +29,5 @@ export function getAllFeeDTO(responseApi: GetAllApiResponse): GetAllDTOResponse 
         feeList,
         total: responseApi.data.totalCount
     };
-    console.log('RESPONSE DTO', response);
     return response;
 }

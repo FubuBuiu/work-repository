@@ -13,7 +13,7 @@ export function GetAllFeeQuery(request: GetAllFeeRequest) {
         queryKey: ['getAllFee', request.page, request.limit],
         queryFn: (): Promise<GetAllDTOResponse> => getAllFee(request),
         //TODO Ver se é necessário esses parâmetros
-        // placeholderData: keepPreviousData,
+        placeholderData: keepPreviousData,
         staleTime: 1000 * 60,
         retry: 1,
         retryDelay: 1000

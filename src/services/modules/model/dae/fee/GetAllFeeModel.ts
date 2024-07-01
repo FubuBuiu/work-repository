@@ -62,19 +62,12 @@ export type GetAllApiResponse = {
     };
 };
 
-// export type ActionType = 'DO_IT' | 'GO_TO';
-
-// export enum ActionEnum {
-//     DO_IT = 'DO_IT',
-//     GO_TO = 'GO_TO'
-// }
-
 export type Action = {
     label?: string;
     toolTipText?: string;
     icon?: { icon: IconType; size?: number | string; color?: string };
-    action: string;
-    auxValues?: { [key: string]: any };
+    actionName: string;
+    auxValue?: any;
 };
 
 export type Fee = {
